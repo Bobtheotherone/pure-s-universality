@@ -1,0 +1,20 @@
+name: Verify the pure S formalization and evaluator
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  proofs-and-replay:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - name: Pin the official Linux Lean distribution
+        run: |
+          curl --fail --location --retry 3 -o "$RUNNER_TEMP/lean.tar.zst" https://github.com/leanprover/lean4/releases/download/v4.33.1/lean-4.33.1-linux.tar.zst
+          cd "$RUNNER_TEMP"
+          echo "890afd185370f85666025b883914ab4f4b339136f8c96167b69cfb62aecaf235  lean.tar.zst" | sha256sum -c
+          tar --zstd -xf lean.tar.zst
+          echo "$RUNNER_TEMP/lean-4.33.1-linux/bin" >> "$GITHUB_PATH"
+      - run: sha256sum -c SHA256SUMS
+      - run: python3 scripts/check_sources.py
+      - run: bash scripts/proof_replay.sh
+      - run: python3 scripts/replay.py --quick --out "$RUNNER_TEMP/replay.json"

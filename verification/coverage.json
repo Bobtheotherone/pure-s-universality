@@ -1,0 +1,554 @@
+{
+  "definition": "Status applies to the exact scope recorded for each item. A status of partial does not import a missing statement as a premise.",
+  "obligations": [
+    {
+      "item": 1,
+      "obligation": "Finite ground S syntax",
+      "status": "kernel_verified",
+      "declarations": [
+        "UniformS.Term"
+      ],
+      "scope": ""
+    },
+    {
+      "item": 2,
+      "obligation": "Application trees",
+      "status": "kernel_verified",
+      "declarations": [
+        "UniformS.Term",
+        "UniformS.pair"
+      ],
+      "scope": ""
+    },
+    {
+      "item": 3,
+      "obligation": "Occurrence addresses",
+      "status": "kernel_verified",
+      "declarations": [
+        "UniformS.Address",
+        "UniformS.reduceAt"
+      ],
+      "scope": ""
+    },
+    {
+      "item": 4,
+      "obligation": "Contextual native contraction",
+      "status": "kernel_verified",
+      "declarations": [
+        "UniformS.Native",
+        "UniformS.native_hasAddress"
+      ],
+      "scope": ""
+    },
+    {
+      "item": 5,
+      "obligation": "Textbook rule and both directions for addresses",
+      "status": "kernel_verified",
+      "declarations": [
+        "UniformS.contract_sound",
+        "UniformS.address_sound",
+        "UniformS.native_hasAddress"
+      ],
+      "scope": ""
+    },
+    {
+      "item": 6,
+      "obligation": "Deterministic selected reduction",
+      "status": "kernel_verified",
+      "declarations": [
+        "UniformS.Certified.action",
+        "UniformS.Certified.nextTerm",
+        "UniformS.Micro.one",
+        "UniformS.Micro.step_native"
+      ],
+      "scope": ""
+    },
+    {
+      "item": 7,
+      "obligation": "Finite terms and decidable inspection",
+      "status": "kernel_verified",
+      "declarations": [
+        "UniformS.Term",
+        "UniformS.inspect"
+      ],
+      "scope": ""
+    },
+    {
+      "item": 8,
+      "obligation": "Redex existence and normality",
+      "status": "kernel_verified",
+      "declarations": [
+        "UniformS.preorder_spec",
+        "UniformS.Micro.normal_exact"
+      ],
+      "scope": ""
+    },
+    {
+      "item": 9,
+      "obligation": "Core word, release and allocation identities",
+      "status": "kernel_verified",
+      "declarations": [
+        "UniformS.consume",
+        "UniformS.release",
+        "UniformS.reset",
+        "UniformS.allocate"
+      ],
+      "scope": ""
+    },
+    {
+      "item": 10,
+      "obligation": "Finite periodic program allocation",
+      "status": "kernel_verified",
+      "declarations": [
+        "UniformS.prepare_spec",
+        "UniformS.BareMacro.alloc_succ",
+        "UniformS.BareMacro.alloc_zero"
+      ],
+      "scope": ""
+    },
+    {
+      "item": 11,
+      "obligation": "Reusable program supply on every generated state",
+      "status": "kernel_verified",
+      "declarations": [
+        "UniformS.Readback.valid_prepare",
+        "UniformS.Bridge.sample_agrees",
+        "UniformS.Certified.orbit_literal"
+      ],
+      "scope": ""
+    },
+    {
+      "item": 12,
+      "obligation": "Live and historical structure",
+      "status": "kernel_verified",
+      "declarations": [
+        "UniformS.ground_history",
+        "UniformS.Readback.bare_marks"
+      ],
+      "scope": ""
+    },
+    {
+      "item": 13,
+      "obligation": "Queue encoding and decoding, including all successive words",
+      "status": "kernel_verified",
+      "declarations": [
+        "UniformS.seed_tree",
+        "UniformS.Readback.complete_readback",
+        "UniformS.Certified.all_program_queues"
+      ],
+      "scope": ""
+    },
+    {
+      "item": 14,
+      "obligation": "Native symbol consumption",
+      "status": "kernel_verified",
+      "declarations": [
+        "UniformS.consume",
+        "UniformS.BareMacro.pop_segment",
+        "UniformS.physical_history_step"
+      ],
+      "scope": ""
+    },
+    {
+      "item": 15,
+      "obligation": "Conditional whole-word release",
+      "status": "kernel_verified",
+      "declarations": [
+        "UniformS.fire_slot",
+        "UniformS.fire_spec",
+        "UniformS.fire_marks"
+      ],
+      "scope": ""
+    },
+    {
+      "item": 16,
+      "obligation": "Phase advance and wrap",
+      "status": "kernel_verified",
+      "declarations": [
+        "UniformS.Bridge.cursor_next",
+        "UniformS.Bridge.source_agrees"
+      ],
+      "scope": ""
+    },
+    {
+      "item": 17,
+      "obligation": "Complete generated-state preservation",
+      "status": "kernel_verified",
+      "declarations": [
+        "UniformS.Readback.valid_advance",
+        "UniformS.Readback.valid_sample",
+        "UniformS.Certified.orbit_literal"
+      ],
+      "scope": ""
+    },
+    {
+      "item": 18,
+      "obligation": "Arbitrarily long recurrent execution",
+      "status": "kernel_verified",
+      "declarations": [
+        "UniformS.ground_trace",
+        "UniformS.Certified.all_program_queues"
+      ],
+      "scope": ""
+    },
+    {
+      "item": 19,
+      "obligation": "Exact number of native contractions and uniform range",
+      "status": "kernel_verified",
+      "declarations": [
+        "UniformS.macro_exact",
+        "UniformS.Certified.all_terms_native",
+        "UniformS.Micro.micro_block"
+      ],
+      "scope": ""
+    },
+    {
+      "item": 20,
+      "obligation": "Complete deterministic selector definition",
+      "status": "kernel_verified",
+      "declarations": [
+        "UniformS.Micro.one",
+        "UniformS.Certified.action",
+        "UniformS.Automaton.oneStep"
+      ],
+      "scope": "Three different functions are exposed. Universality is proved for the first two and claimed on paper for the last."
+    },
+    {
+      "item": 21,
+      "obligation": "Correctness of navigation operations",
+      "status": "partial",
+      "declarations": [
+        "UniformS.BareMacro.pop_spec",
+        "UniformS.BareMacro.finish_spec",
+        "UniformS.Micro.micro_block"
+      ],
+      "scope": "Recursive occurrence traversals are proved correct. The physical parent-cursor walker and its equivalence to the parity selector remain outside this certificate."
+    },
+    {
+      "item": 22,
+      "obligation": "Termination for arbitrary finite trees",
+      "status": "kernel_verified",
+      "declarations": [
+        "UniformS.Micro.one",
+        "UniformS.inspect",
+        "UniformS.Certified.fold"
+      ],
+      "scope": "These are total structural definitions checked by the termination checker."
+    },
+    {
+      "item": 23,
+      "obligation": "Redex validity",
+      "status": "kernel_verified",
+      "declarations": [
+        "UniformS.Micro.step_native",
+        "UniformS.Automaton.oneStep_native"
+      ],
+      "scope": ""
+    },
+    {
+      "item": 24,
+      "obligation": "Determinism",
+      "status": "kernel_verified",
+      "declarations": [
+        "UniformS.Certified.nextTerm",
+        "UniformS.Micro.one",
+        "UniformS.Automaton.oneStep"
+      ],
+      "scope": ""
+    },
+    {
+      "item": 25,
+      "obligation": "Normality reporting",
+      "status": "kernel_verified",
+      "declarations": [
+        "UniformS.Micro.normal_exact",
+        "UniformS.Automaton.reports_normal"
+      ],
+      "scope": ""
+    },
+    {
+      "item": 26,
+      "obligation": "Root restart",
+      "status": "partial",
+      "declarations": [
+        "UniformS.Micro.one",
+        "UniformS.Micro.propose"
+      ],
+      "scope": "Each call takes a full root and a finite mode. The original walker with all mode erased each time has a written all-run proof."
+    },
+    {
+      "item": 27,
+      "obligation": "Absence of persistent source registers or work tape",
+      "status": "kernel_verified",
+      "declarations": [
+        "UniformS.Micro.Mode",
+        "UniformS.Micro.Machine",
+        "UniformS.Micro.one",
+        "UniformS.Certified.nextTerm"
+      ],
+      "scope": "A call exchanges only one of eight modes and the current native tree. Recursive navigation can use a temporary stack."
+    },
+    {
+      "item": 28,
+      "obligation": "Navigation workspace and parent-pointer equivalence",
+      "status": "partial",
+      "declarations": [
+        "UniformS.copy_exact"
+      ],
+      "scope": "The temporary zipper and cursor storage bounds are given in the mathematical paper. The interpreter heap and cursor implementation are outside the kernel model."
+    },
+    {
+      "item": 29,
+      "obligation": "Regular or finite-state selector characterization",
+      "status": "partial",
+      "declarations": [
+        "UniformS.Certified.State",
+        "UniformS.Certified.code_inj",
+        "UniformS.Automaton.markedAccept",
+        "UniformS.Micro.Mode"
+      ],
+      "scope": "Regular detector is proved. The full unbounded address agreement of the stateless marked-tree selector is a written theorem."
+    },
+    {
+      "item": 30,
+      "obligation": "Selector and evaluation resource bounds",
+      "status": "partial",
+      "declarations": [
+        "UniformS.trajectory_cost",
+        "UniformS.exact_encoder_leaves",
+        "UniformS.Micro.micro_block"
+      ],
+      "scope": "Native contraction count, tree growth and persistent replacement are checked. The independent per-input walker move bound is written."
+    },
+    {
+      "item": 31,
+      "obligation": "Cyclic tag semantics",
+      "status": "kernel_verified",
+      "declarations": [
+        "UniformS.source",
+        "UniformS.Bridge.source_agrees"
+      ],
+      "scope": ""
+    },
+    {
+      "item": 32,
+      "obligation": "Generic cyclic tag simulation",
+      "status": "kernel_verified",
+      "declarations": [
+        "UniformS.Certified.all_program_queues",
+        "UniformS.Certified.orbit_literal"
+      ],
+      "scope": ""
+    },
+    {
+      "item": 33,
+      "obligation": "Arbitrary finite nonempty cyclic programs and arbitrary binary words",
+      "status": "kernel_verified",
+      "declarations": [
+        "UniformS.Bridge.compile",
+        "UniformS.Certified.all_program_queues"
+      ],
+      "scope": ""
+    },
+    {
+      "item": 34,
+      "obligation": "Complete finite queue-machine simulation",
+      "status": "partial",
+      "declarations": [
+        "UniformS.Queue.prefix_exact",
+        "UniformS.Queue.sweep"
+      ],
+      "scope": "Formal queue semantics and one register sweep. Native finite menu refinement is written and tested."
+    },
+    {
+      "item": 35,
+      "obligation": "Independent universal source model and explicit formal dependency",
+      "status": "kernel_verified",
+      "declarations": [
+        "UniformS.Bridge.tape_halts_iff_native_samples",
+        "UniformS.Certified.universal_selected_halting"
+      ],
+      "scope": "Uses the included proved deterministic-tape to fixed Cook compiler, with finite machine and initial tape as input. The ordinary computability interpretation of Turing machines is conventional."
+    },
+    {
+      "item": 36,
+      "obligation": "Finite source compiler",
+      "status": "kernel_verified",
+      "declarations": [
+        "UniformS.Bridge.input",
+        "UniformS.Bridge.compile"
+      ],
+      "scope": "The upstream compileThreeCounterJob, compileT2Job, encodeBits definitions and their three correctness equivalences are included at the pinned Git revision."
+    },
+    {
+      "item": 37,
+      "obligation": "Source initialization",
+      "status": "kernel_verified",
+      "declarations": [
+        "UniformS.seed_queue",
+        "UniformS.seed_tree",
+        "UniformS.Readback.valid_seed"
+      ],
+      "scope": ""
+    },
+    {
+      "item": 38,
+      "obligation": "Source transition simulation",
+      "status": "kernel_verified",
+      "declarations": [
+        "UniformS.Bridge.tick_agrees",
+        "UniformS.Certified.all_program_queues",
+        "UniformS.Micro.micro_block"
+      ],
+      "scope": ""
+    },
+    {
+      "item": 39,
+      "obligation": "Source halting equivalence",
+      "status": "kernel_verified",
+      "declarations": [
+        "UniformS.Certified.universal_selected_halting",
+        "UniformS.Micro.universal_single_contractions"
+      ],
+      "scope": ""
+    },
+    {
+      "item": 40,
+      "obligation": "Source output correctness",
+      "status": "kernel_verified",
+      "declarations": [
+        "UniformS.Output.binary_io",
+        "UniformS.Output.any_bit_channel",
+        "UniformS.Numerical.physical_outputs",
+        "UniformS.Numerical.decode_completed"
+      ],
+      "scope": "Arbitrary unary output from physical FIFO slices. Historical register-4 path is separate."
+    },
+    {
+      "item": 41,
+      "obligation": "Exclusion of false successful detections",
+      "status": "kernel_verified",
+      "declarations": [
+        "UniformS.Micro.micro_to_macro",
+        "UniformS.Micro.universal_single_contractions",
+        "UniformS.Output.binary_io",
+        "UniformS.Numerical.decode_completed",
+        "UniformS.Numerical.accepted_tree_origin",
+        "UniformS.Numerical.unique_output"
+      ],
+      "scope": "Applies also after each primitive contraction at monitored boundaries."
+    },
+    {
+      "item": 42,
+      "obligation": "Complete universal input-output contract",
+      "status": "kernel_verified",
+      "declarations": [
+        "UniformS.Micro.universal_single_contractions",
+        "UniformS.Output.binary_io",
+        "UniformS.Numerical.universal_natural_io",
+        "UniformS.Numerical.universal_single_natural_io",
+        "UniformS.Numerical.all_machine_tables"
+      ],
+      "scope": "All natural inputs, outputs and codes of ordinary binary machine tables."
+    },
+    {
+      "item": 43,
+      "obligation": "Encoder totality, size and resource restrictions",
+      "status": "partial",
+      "declarations": [
+        "UniformS.exact_encoder_leaves",
+        "UniformS.word_weight_bounds",
+        "UniformS.Bridge.input",
+        "UniformS.Numerical.size_exact"
+      ],
+      "scope": "Exact total ground size as a function of the compiled seed; no end-to-end runtime upper bound for source compilation is asserted here."
+    },
+    {
+      "item": 44,
+      "obligation": "Detector totality and restrictions",
+      "status": "kernel_verified",
+      "declarations": [
+        "UniformS.Certified.fold",
+        "UniformS.Certified.halt",
+        "UniformS.Certified.code_inj",
+        "UniformS.Micro.accepting"
+      ],
+      "scope": ""
+    },
+    {
+      "item": 45,
+      "obligation": "Decoder totality and restrictions",
+      "status": "kernel_verified",
+      "declarations": [
+        "UniformS.Readback.complete_readback",
+        "UniformS.Output.binary_io",
+        "UniformS.Numerical.physical_outputs",
+        "UniformS.Numerical.decode_completed",
+        "UniformS.Numerical.D",
+        "UniformS.Archive.windows_exact"
+      ],
+      "scope": "Total structural, option-valued readout over actual physical bit windows; no sharp wall-time or logspace claim."
+    },
+    {
+      "item": 46,
+      "obligation": "Regular halting recognition",
+      "status": "kernel_verified",
+      "declarations": [
+        "UniformS.Certified.fold",
+        "UniformS.Certified.delta",
+        "UniformS.Certified.code_length",
+        "UniformS.Certified.head_correct"
+      ],
+      "scope": "Bottom-up transition is explicit, with five Boolean and fifteen optional-Boolean coordinates. The per-action guard takes its product with the finite mode."
+    },
+    {
+      "item": 47,
+      "obligation": "Auxiliary nonuniversality for a precisely specified model",
+      "status": "kernel_verified",
+      "declarations": [
+        "UniformS.Separation.eval_folds",
+        "UniformS.Separation.RegisterSystem.orbit",
+        "UniformS.Separation.combined_cutoff"
+      ],
+      "scope": "Formal finite bound yields a decision procedure. The larger single-stack replacement result is written."
+    },
+    {
+      "item": 48,
+      "obligation": "Combined-interface separation theorem",
+      "status": "kernel_verified",
+      "declarations": [
+        "UniformS.Separation.combined_cutoff",
+        "UniformS.Separation.first_numeric_cutoff"
+      ],
+      "scope": "Bounded regular first hit even with an arbitrary numerical concrete-register reader."
+    },
+    {
+      "item": 49,
+      "obligation": "Physical computational dataflow",
+      "status": "kernel_verified",
+      "declarations": [
+        "UniformS.physical_history_step",
+        "UniformS.ground_history",
+        "UniformS.Certified.action_valid",
+        "UniformS.Certified.orbit_literal",
+        "UniformS.Archive.completed_ground",
+        "UniformS.Archive.windows_exact"
+      ],
+      "scope": "Actual native term retains the exact FIFO read stream feeding the numerical reader."
+    },
+    {
+      "item": 50,
+      "obligation": "Combined native dataflow and attribution",
+      "status": "kernel_verified",
+      "declarations": [
+        "UniformS.ground_history",
+        "UniformS.Micro.universal_single_contractions",
+        "UniformS.Separation.combined_cutoff",
+        "UniformS.Numerical.universal_single_natural_io",
+        "UniformS.Numerical.active_block",
+        "UniformS.Separation.first_numeric_cutoff"
+      ],
+      "scope": "Restricted replacement class and actual mutation/sampling proofs. The committee judges admissibility. Separate pushdown results remain written."
+    }
+  ]
+}

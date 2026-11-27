@@ -1,0 +1,21 @@
+\section{Formal verification}
+In Lean, \(\mathrm{Native}(t,u)\) denotes one contextual \(S\) contraction, and \(\mathrm{Steps}(k,t,u)\) a chain of exactly \(k\) contractions. The auxiliary type \(\mathrm{Board}\) describes the visible segments, spent cells, committed slots and frontier of a term. Erasing a board \(b\) gives an ordinary closed tree \(\lfloor b\rfloor_P\). The boundary policy of Theorem~\ref{certmain} acts directly on that tree. The stateless selector of Theorem~\ref{main} is represented separately. On any finite term its fallback finds a redex if one exists.
+
+Write \(b_n=\mathrm{sample}(P,n,b_0)\) for the deterministic composition of the annotated pop, allocation and firing operations, with a stationary sample after an empty queue. Theorems \texttt{macro\_exact} and \texttt{ground\_trace} prove the 2--4 bounds and the source state equation for every nonempty transition, arbitrary program, and arbitrary finite nonempty-step run, including all previously copied history in the ground-tree conclusion. The spent prefix has length equal to the number of nonempty source steps. A second induction establishes the following theorem, checked in \texttt{PureS/Tape.lean}. Fix Filin's Rogozhin--Cook cyclic program \(P_*\). For every deterministic tape-machine instance \(M\), let \(b_0\) be the seed of its compiled input. Then
+\[
+ M\downarrow\quad\Longleftrightarrow\quad
+ \exists n,k:\ k\le4n,\quad
+ \lfloor b_0\rfloor_{P_*}\xrightarrow{k}_{S}\lfloor b_n\rfloor_{P_*},
+ \quad V(b_n)=\varepsilon .
+\]
+The sequence \(b_n\) in this equivalence is determined by the encoded machine and its input. The tape-to-Cook compiler and its halting theorem are taken from \cite{filin}. The complete certificate includes 90 modules from that development, together with the proofs relating its cyclic queues and terminal rows to the present \(S\)-terms.
+
+\paragraph{\textit{Scope of the formalization.}}
+In \texttt{UniformS.Numerical}, Theorem~\ref{certnumeric} takes two forms. At tag-step boundaries it is \nolinkurl{universal_natural_io}. After each single contraction it is \nolinkurl{universal_single_natural_io}. Both depend on propositional extensionality and quotient soundness. The first-hit bound for tree registers also uses classical choice. The two numerical declarations and their dependencies passed Lean~4.33.1's fresh-kernel check. A second checker, \texttt{lean4lean}, replayed all 112 source modules.
+
+The proof of Theorem~\ref{main} identifies the address chosen by the stateless parity walker on each reachable term. Its Lean development proves legality, exact reporting of normality, and agreement on spent words and initial seeds. The full correspondence for that walker is proved in Section~\ref{regular}. For the register convention of Theorem~\ref{output}, Lean checks a complete primitive sweep on every legal row. The finite-menu simulation of the 446-label interpreter and its register-4 readout are proved in the paper. Theorem~\ref{certnumeric} uses a different machine numbering and has an end-to-end Lean proof.
+
+\paragraph{\textit{A common test instance.}}
+For \(P=(1,\varepsilon)\) and initial word \(101\), both our construction and that of \cite{filin} visit the queues \(101,011,11\). Here the corresponding contraction indices are \(0,4,6\), and the unfolded trees have \(289,635,643\) nodes. The earlier construction reports indices \(0,22,85\) and tree sizes \(171,17057,339285\). These measurements refer to the same two source steps. The general bound in Theorem~\ref{main} concerns the number of contractions.
+
+The \href{https://github.com/Bobtheotherone/pure-s-universality}{supplementary material} includes the Lean sources, the reference evaluator, a Wolfram Language example, and instructions for reproducing the proofs and computations.

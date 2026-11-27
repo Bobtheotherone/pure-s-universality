@@ -1,0 +1,58 @@
+{
+  "edition": "Public research edition",
+  "formal_source_trees": {
+    "formal": "7ae1064667be33141a0b5528c271e5303e65c58c",
+    "implementation": "144fb9256d4fef10d6c3aac538715010f312abd0",
+    "tests": "d3f8cf9e6546130586e573fbf78c3994abc04b05",
+    "third_party/cinematic-strawberry-compiler": "aa8505c8e839dfa65f4dd1e14470f5a1db23a57f"
+  },
+  "kernel": {
+    "version": "4.33.1",
+    "command": "lake env leanchecker --fresh -v CandidateCertificate",
+    "exit": 0,
+    "lake_jobs": 118
+  },
+  "alternate": {
+    "command": "python3 scripts/replay_alternate.py \"$LEAN4LEAN_BIN\"",
+    "exit": 0,
+    "modules": 112,
+    "declaration_replays_reported": 13128
+  },
+  "headlines": {
+    "UniformS.Numerical.universal_natural_io": [
+      "propext",
+      "Quot.sound"
+    ],
+    "UniformS.Numerical.universal_single_natural_io": [
+      "propext",
+      "Quot.sound"
+    ]
+  },
+  "tests": {
+    "micro-controller": 0,
+    "bare-macro": 0,
+    "assembler": 0,
+    "native-differential": 0,
+    "walker": 0,
+    "arbitrary-and-menu": 0,
+    "public-binary": 0,
+    "physical-numerical": 0,
+    "U(1,0)": 0,
+    "U(1,1)": 0,
+    "wolfram-language": 0
+  },
+  "third_party": {
+    "compiler_modules_verified": 90,
+    "package_license_blob": "486b7ce4323010325191d3fb08a65e286be7f060",
+    "license": "MIT"
+  },
+  "typeset_checks": {
+    "symbolic_equation_tags": [
+      1,
+      159
+    ],
+    "printed_register_instructions": 446,
+    "printed_cyclic_productions": 114
+  },
+  "build_log_format": "The machine-specific checkout path in the clean build log is printed as $CHECKOUT."
+}

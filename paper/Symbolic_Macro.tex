@@ -1,0 +1,78 @@
+\begin{gather}
+A=\overline{\mathbb B},\quad
+a\triangleright b=\begin{cases}a&a\ne\bot,\\b&a=\bot,\end{cases}\qquad
+s\in \mathbb B^5\times A^{15},\\
+s=(g,u,x,f,e,t,j,k,w,\widetilde w,z,\widetilde z,a,y,\widetilde y,l,\widetilde l,m,r,o),\\
+\begin{gathered}
+s(S):\quad g=1,\ t=0,\quad u=x=f=e=0,\\
+j=k=w=\widetilde w=z=\widetilde z=a=y=\widetilde y=l=\widetilde l=m=r=o=\bot,
+\end{gathered}\\
+\begin{gathered}
+s(PQ):\quad \kappa=[t_P=1],\quad g=0,\ u=g_P,\ x=\kappa,\ f=x_P,\ e=g_Px_Q,\\
+t=[g_Pg_Q]1,\quad j=[\kappa]t_Q,\quad k=t_P,
+\end{gathered}\\
+w=j_P\triangleright [k_Q\ne\bot]\widetilde w_P,\quad
+\widetilde w=[g_P]w_Q,\quad z=[\kappa]w_Q,\quad\widetilde z=[g_P]z_Q,\quad a=\widetilde z_P,\\
+y=[u_P]a_Q,\quad\widetilde y=[g_P]y_Q,\quad
+l=[u_P](\widetilde y_P\triangleright l_Q),\quad\widetilde l=[\kappa]l_Q,\quad m=[x_P]\widetilde l_P,\\
+r=[f_P](m_P\triangleright r_Q),\quad o=[e_P](\widetilde z_P\triangleright r_Q),
+\quad H(t)=[o(t)=\bot],\\
+\partial((SSx)y)=(Sy)(xy),\quad \partial((Sv)g)=(S\,\partial v)g,\quad C[\bot]=\bot,\\
+U_2(t)=[\exists x,y:t=Sxy],\qquad \kappa(Sxyz)=(xz)(yz),\\
+K_b(Y)=Y[\rho_b:\kappa(Y|_{\rho_b})]\quad
+(Y=\pair{x_0}{x_1},\ \neg U_2(x_0)\land\neg U_2(x_1)),\\
+\lambda_f(\pair{x}{v})=\pair{f(x)}v\triangleright\pair x{\lambda_f(v)},\\
+\iota_{fg}((G(l)s)t)=(G(\lambda_f(l))s)t\triangleright(G(l)s)\iota_{fg}(t),\\
+\iota_{fg}(t)=g(t)\quad(\nexists l,s,v:t=(G(l)s)v),\\
+\Theta_{afg}(\pair{G(w)}r)=
+\pair{G(a(w))}r\triangleright\pair{G(w)}{\iota_{fg}(r)},\quad 0_\T(t)=\bot,\\
+Y=\pair{x}{(S G(w))g}\quad\Rightarrow\quad \partial_Y(Y)=Y[RLRR:\partial(w)],\\
+f(t)=\bot\quad(t\notin {\rm dom}\,f,\ f\in\{\partial,\kappa,K_b,\lambda_f,\Theta_{afg},\partial_Y\}),\\
+\Pi=\Theta_{\partial,\partial_Y,0_\T},\qquad
+F_b=\Theta_{0_\T,K_b,0_\T},\qquad \Lambda=\Theta_{0_\T,0_\T,\kappa},\\
+b=o(t)\ne\bot,\quad u=\Pi(t)\ne\bot,\quad
+i=\min\{j\in\{0,1,2\}:F_b(\Lambda^j(u))\ne\bot\},\\
+\mathfrak b(t)=\begin{cases}(2+i,F_b(\Lambda^i(u)))&(b,u,i)\in{\rm dom},\\ \bot&(b,u,i)\notin{\rm dom},\end{cases}\quad
+B(t)=(\pi_2\mathfrak b(t))\triangleright t,\quad \pi_2\bot=\bot,\\
+(b,u,i)\in{\rm dom}\ \Rightarrow\ t\R u\R^i \Lambda^i(u)\R B(t),\quad 2\le 2+i\le4,\\
+s\in{\cal V}_P\Rightarrow
+o(\lfloor s\rfloor_P)=(V(s))_0,\quad
+\Pi(\lfloor s\rfloor_P)=\lfloor\partial s\rfloor_P,\quad
+F_b(\lfloor s\rfloor_P)=\lfloor K_b(s)\rfloor_P,\\
+B(\lfloor s\rfloor_P)=\lfloor B_*(s)\rfloor_P,\quad
+B_*(s)\in{\cal V}_P,\quad
+B^n(E(P,w))=\lfloor B_*^n(s_0)\rfloor_P,\\
+V(B^n(E(P,w)))=\pi_2(\delta_P^n(0,w)),\quad (w)_0=
+\begin{cases}\bot&w=\varepsilon,\\ b&w=bw',\end{cases}\\
+c(0)=3,\quad c(1)=4,\quad c(v)=\sum_{j<|v|}c(v_j),\quad
+L(E(P,w))=22+48p+4\sum_{i<p}c(v_i)+c(w),\\
+\begin{gathered}
+P_*=(v_i)_{i<912},\quad w=C(M),\\
+M\downarrow\iff\exists n:\pi_2(\delta_{P_*}^n(0,C(M)))=\varepsilon
+\iff\exists n:H(B^n E(P_*,C(M)))=1,
+\end{gathered}\\
+E_b=E(P_*,C(M_b)),\quad (B_2)^n([E_0,E_1])=[B^nE_0,B^nE_1],
+\quad H_b([t_0,t_1])=H(t_b),\\
+D([t_0,t_1])=\begin{cases}0&H(t_0),\\1&\neg H(t_0)\land H(t_1),\\
+\bot&\neg H(t_0)\land\neg H(t_1),\end{cases}\quad
+\neg(M_0\downarrow\land M_1\downarrow),\\
+\forall b\in\mathbb B:\quad
+M_b\downarrow\iff\exists n:D(B_2^n[E_0,E_1])=b .\\
+\mathcal M=\{\diamond,\dagger\}\sqcup(\{1,2,3\}\times\mathbb B),\qquad |\mathcal M|=8,\\
+(\diamond,t)\mapsto((1,b),\Pi(t))\quad(b=o(t)\ne\bot,\ \Pi(t)\ne\bot),\qquad
+((i,b),t)\mapsto(\diamond,F_b(t))\quad (F_b(t)\ne\bot),\\
+((i,b),t)\mapsto((i+1,b),\Lambda(t))\quad (i<3,\ F_b(t)=\bot,\ \Lambda(t)\ne\bot),\\
+(m,t)\mapsto(\dagger,t')\quad (\Delta(m,t)=\bot,\ a=\min_{\rm pre}\mathcal R(t),\ t\xrightarrow a t'),\\
+(\exists v:\Delta^+(m,t)=v)\iff\mathcal R(t)\ne\emptyset,\quad
+\widehat\Delta(s)=\Delta^+(s)\triangleright s,\\
+J(m,t)=[m=\diamond]H(t),\qquad
+\mathfrak b(t)=(k,u)\Rightarrow\widehat\Delta^k(\diamond,t)=(\diamond,u),\\
+\mathfrak b(t)=(k,u),\quad 0<j<k
+\Rightarrow\pi_1\widehat\Delta^j(\diamond,t)\in\{1,2,3\}\times\mathbb B,\quad
+J(\widehat\Delta^j(\diamond,t))=0,\\
+t_0=E(P,w),\quad \forall n:\ H(B^nt_0)=0\ \Rightarrow\ \mathfrak b(B^nt_0)\ne\bot,\\
+H(t)=0,\ \mathfrak b(t)=(l,u),\ J(\widehat\Delta^k(\diamond,t))=1
+\Rightarrow l\le k,\quad J(\widehat\Delta^{k-l}(\diamond,u))=1,\quad k-l<k,\\
+(\exists n:H(B^nt_0)=1)\iff(\exists k:J(\widehat\Delta^k(\diamond,t_0))=1),\\
+\forall M:\ M\downarrow\ \iff\ \exists k:\ J(\widehat\Delta^k(\diamond,E(P_*,C(M))))=1.
+\end{gather}

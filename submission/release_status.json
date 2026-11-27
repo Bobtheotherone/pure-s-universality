@@ -1,0 +1,19 @@
+{
+  "title": "Computational universality of the pure S-calculus under a uniform selected reduction",
+  "authors": [
+    "Radames Mercado-Barbosa",
+    "Anthony Langdon"
+  ],
+  "edition": "public research edition",
+  "date": "2026-11-26",
+  "formal_source_revision": "4d99d91c0b4f9891f502f6a615f06a6b4ea97972",
+  "numerical_theorem": "UniformS.Numerical.universal_natural_io",
+  "primitive_numerical_theorem": "UniformS.Numerical.universal_single_natural_io",
+  "objects_of_the_numerical_theorem": "Finite ground pure-S terms encoding arbitrary deterministic binary tape tables with unary input and output.",
+  "register_formulation": "Theorem 5 uses a separate 446-instruction interpreter and a designated unary output register.",
+  "distribution": "public",
+  "submitted_to_wolfram": false,
+  "submitted_to_arxiv": false,
+  "repository": "https://github.com/Bobtheotherone/pure-s-universality",
+  "primary_submission_file": "paper/Universal_Pure_S.pdf"
+}

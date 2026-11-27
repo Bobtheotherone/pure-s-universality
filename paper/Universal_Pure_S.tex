@@ -1,0 +1,322 @@
+\documentclass[11pt,letterpaper,oneside,reqno]{amsart}
+\usepackage[letterpaper,textwidth=6.15in,textheight=8.82in,footskip=28pt,centering]{geometry}
+\usepackage{amssymb,mathtools,booktabs,longtable,array,enumitem,needspace}
+\usepackage[final]{microtype}
+\usepackage[hidelinks]{hyperref}
+\pagestyle{plain}
+\setlength{\emergencystretch}{1.5em}
+\setlist{leftmargin=*,nosep}
+\raggedbottom
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{prop}[theorem]{Proposition}
+\newcommand{\T}{\mathcal T_S}
+\newcommand{\N}{\mathbb N}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\pair}[2]{\langle #1,#2\rangle}
+\newcommand{\word}{\mathsf W}
+\newcommand{\bx}[1]{\mathsf{box}(#1)}
+\newcommand{\slot}{\mathsf{slot}}
+\newcommand{\live}{\mathsf{live}}
+\newcommand{\cmt}{\mathsf c}
+\newcommand{\pops}{\mathsf d}
+\newcommand{\st}{\mathsf{stable}}
+\newcommand{\arity}{\ell}
+\newcommand{\fired}{\mathsf{fired}}
+\newcommand{\halt}{\mathsf{halt}}
+\newcommand{\bin}{\{0,1\}}
+\newcommand{\Rule}{\longrightarrow_S}
+\newcommand{\GH}{https://github.com/Bobtheotherone/pure-s-combinator-research}
+\input{Authors}
+\hypersetup{pdftitle={Computational universality of the pure S-calculus under a uniform selected reduction},pdfauthor={\PaperAuthors}}
+\title[Selected reduction in the pure \(S\)-calculus]
+  {Computational universality of the pure \(S\)-calculus under a uniform selected reduction}
+\author{\PaperAuthors}
+\date{26 November 2026}
+\begin{document}
+\begin{abstract}
+We give a single reduction strategy for the pure \(S\)-calculus that simulates every finite binary cyclic tag program. Each nonempty tag step takes two, three, or four contractions of \(Sxyz\to(xz)(yz)\). A contraction consumes a queue symbol, and the word released by a later contraction becomes part of the same queue. For a fixed universal program, a regular tree language detects halting and the terminal term determines the numerical output. We prove the input/output equivalence in Lean~4, both at tag-step boundaries and for an eight-mode controller that contracts one redex at a time. To bound the power of the auxiliary operations, we also prove a finite cutoff for acceptance in systems that combine whole tree registers under finite observation.
+\end{abstract}
+\maketitle
+
+\section{Introduction}
+The \(S\) rule duplicates its third argument and retains all three arguments. To represent a queue in such a system, one must distinguish the part still to be read from the copies left by earlier contractions. Our encoding keeps the unread letters in order. After a letter is consumed, its residual records the bit that determines which program word to release.
+
+Let \(\T\) be the finite ordered binary trees with leaf \(S\) and application as internal node. Juxtaposition associates to the left. A contraction replaces one occurrence, even when other occurrences are syntactically equal. A \emph{regular redex selector} is a fixed regular language of singly marked finite trees that marks exactly one legal redex on every reducible input. It gives a function on bare terms. On normal terms we extend the function by the identity.
+
+A cyclic tag program \(P=(v_0,\ldots,v_{p-1})\), \(p\ge1\), consists of binary words, possibly empty. In phase \(i\), a source step is
+\begin{equation}
+  (i,bz)\longmapsto(i+1\bmod p,\ z v_i^{\,b}),\qquad
+  v^0=\eps,\quad v^1=v.                                      \label{cts}
+\end{equation}
+The empty queue ends the run. Cook proves universality of this model by simulation of tag systems \cite{cook}. We emulate its whole queue, for every program and word.
+
+\begin{theorem}\label{main}
+There are a linear-size constructor encoder \(E(P,w)\) and a single root-restarted, finite-state regular selector \(\sigma\), independent of \(P\), with the following property. Starting with phase zero and queue \(w\), every nonempty step \eqref{cts} is realized between consecutive distinguished samples of the native path, at distance \(2\) to \(4\). The live words at these samples are exactly the source queues. A fixed regular test detects an empty queue precisely at completion, including initial emptiness. Thereafter the native path can continue indefinitely with the same decoded terminal queue.
+\end{theorem}
+
+Wolfram allows selected reduction and output detection along a nonterminating path \cite{announcement,prize}. The bound counts contractions. Search and copying costs depend on the term representation. Theorem~\ref{output} reads a register from the live word. Theorem~\ref{certnumeric}, formalized in Lean, reads a unary numeral from the halted tape.
+
+\section{Encoding the queue and the program}
+For terms \(u,v\), write \(\pair u v=Suv\). Let \(\mathsf{nil}\) denote the empty list and \(u::\ell\) the list with head \(u\) and tail \(\ell\). The encoding of lists of terms is given by
+\[
+  \operatorname{enc}(\mathsf{nil})=S,\qquad
+  \operatorname{enc}(u::\ell)=\pair{u}{\operatorname{enc}(\ell)}.
+\]
+We enclose each visible word \(X\) in the term \(\bx{X}=\pair S X\). In an address, \(L\) and \(R\) denote a step to the left and right child, respectively. The fields of a pair have addresses \(LR\) and \(R\). A contraction acts at the selected occurrence, even when the same subtree occurs elsewhere in the term.
+
+For the two bit values, set \(B_0=S,\ B_1=SS,\ J_b=SSB_b\), and put
+\[
+ \word(\eps)=S,\qquad \word(bw)=J_b\word(w).
+\]
+The read operation is a single contraction
+\begin{equation}
+ J_bX\ \Rule\ (SX)(B_bX).                                    \label{read}
+\end{equation}
+Call the source a live cell and the result a spent cell. In the latter, \(LR\) continues the word and \(RL\) retains the consumed bit. The rightmost copy is never touched. After subsequent contractions the spent shape is \((SA)(B_bG)\) with arbitrary history \(G\). For a live cell the continuation is at \(R\). A stream of such cells records all bits in their original order and records which of them have been consumed. Its terminal is \(S\). Equation~\eqref{read} and this history convention occur in the prior work described in Section~\ref{sources}.
+
+To store a program word until it is called for, define \(K(V)=SSSV\). The two arms of a slot are
+\begin{equation}
+ \slot(v)=\pair{K(S)}{K(\bx{\word(v)})},\qquad
+ K(V)\ \Rule\ (SV)(SV).                                      \label{commit}
+\end{equation}
+On input bit \(b\), fire arm \(b\), with the first arm numbered zero. A fired arm exposes \(V\) at \(LR\). For arm one, its right child is the appended word. For arm zero the appended word is empty. A fired and subsequently read arm has shape \((SV')G\). Its right field and the unused arm remain opaque. No equality of copies is used to recognize a fired arm. In particular, a fired word can be consumed without changing the master copy of the program.
+
+For a program of period \(p\), the initial term contains one list of slots. Its other components are
+\begin{align}
+ L&=\operatorname{enc}\bigl((\slot(v_i))_{i<p}\bigr),&
+ F&=\pair{S}{L},& A&=SF, \notag\\
+ X_0&=SAA,& X_{j+1}&=A X_j,&
+ E(P,w)&=\pair{\bx{\word(w)}}{X_0X_0}.                             \label{seed}
+\end{align}
+Only \(X_0\) is needed by the encoder. The descendants called \(X_j\) arise during reduction. A region for program periods has a terminal pair, called its frontier. It starts at \(X_0X_0\). Two root contractions describe its complete allocation mechanism:
+\begin{align}
+ X_0X_j &\Rule (A X_j)(A X_j)=X_{j+1}X_{j+1},                 \label{reset}\\
+ X_{r+1}X_j &\Rule (F X_j)(X_rX_j).                           \label{alloc}
+\end{align}
+In \eqref{alloc}, the left child contains a pristine period. Its list is at \(LLR\) from the new root. The right child is the new frontier. Equation~\eqref{reset} is followed by an instance of \eqref{alloc} with \(r=j\) when a period is needed. A fresh period therefore costs one or two contractions. All previously allocated periods lie outside this occurrence. The specialization \(A=SF\) adapts the growable-register allocator of~\cite{five} to whole strings of executable slots.
+
+\section{The selected step}
+At any time the second field of the seed is a right spine of allocated frames
+\((F'X_j)t\), followed by a frontier. \(F'\) is a copy of \(F\) with some slots fired and some released words subsequently consumed. Neither the \(X_j\) field of a frame nor any subtree of a frontier is separately edited. Read frames from the outside inward, and slots inside each frame in list order.
+
+Form the ordered sequence of \emph{visible words} from the header followed by the released words of all fired one-arms in slot order. A fired zero-arm contributes the empty word. Walk just the designated continuations of these words. Write \(\cmt\) for the number of fired slots, \(\pops\) for the number of spent cells in these visible words, and \(V\) for the concatenation of their live letters. These counts are proof quantities. The policy tests their parities. It uses the last spent bit only when such a bit exists.
+
+\begin{center}
+\small
+\begin{tabular}{@{}p{.43\linewidth}p{.50\linewidth}@{}}
+\toprule
+Condition on the current bare tree & Occurrence selected for one contraction\\
+\midrule
+\(\pops\equiv\cmt\pmod2\) and \(V\ne\eps\)
+ & The first live cell of the first visible word that still has a live cell.\\[3pt]
+\(\pops\not\equiv\cmt\pmod2\) and an unused slot exists
+ & Arm \(b\) of the first unused slot, where \(b\) is the last spent bit.\\[3pt]
+\(\pops\not\equiv\cmt\pmod2\) and no unused slot exists
+ & The frontier, by \eqref{reset} or \eqref{alloc}.\\[3pt]
+\(\pops\equiv\cmt\pmod2\) and \(V=\eps\)
+ & The frontier. Completion persists while unused periods accumulate.\\
+\bottomrule
+\end{tabular}
+\end{center}
+The phase is also structural: in the block containing the first unused slot, count its preceding fired slots. If no unused slot exists, the next phase is zero. This gives \(\cmt\bmod p\) even when empty post-halt blocks accumulate.
+
+A sample is \(\st\) when the parities agree on the parsed representation. Section~\ref{regular} defines the policy away from this representation.
+
+\begin{proof}[Proof of Theorem~\ref{main}]
+Initially no slot is fired and the sole visible word is \(w\). We maintain three facts. Fired slots form an initial segment of the allocated slots. Spent letters form an initial segment of all visible letters. Finally, \(\pops=\cmt\) at a stable sample and \(\pops=\cmt+1\) between active stable samples.
+
+Suppose a stable sample has \(V=bz\) and \(\cmt=n\). Equation~\eqref{read} spends exactly its first live letter. Both residuals of the tail are present, but only one remains visible. The concatenated live word is now \(z\), and the last spent tag is \(b\). If needed, \eqref{reset}--\eqref{alloc} supply the next slot. They leave both counts and all visible words unchanged. Because the slots spell successive identical periods and the first \(n\) are fired, the next one is \(\slot(v_{n\bmod p})\). Equation~\eqref{commit} fires its selected arm and adds exactly \(v_{n\bmod p}^{\,b}\) after every earlier visible letter. Thus the new \(V\) is \(zv_{n\bmod p}^{\,b}\) and exactly one additional slot is fired. All three facts hold again. None of the intervening samples has equal parities. There was one pop, one firing and zero to two allocations.
+
+This proves the assertion for arbitrarily many consecutive steps by ordinary induction. At a stable empty queue the last policy row preserves emptiness and both counts forever. The frontier always has a native redex. Every encoded path consequently contains only legal contractions even after the source finishes.
+\end{proof}
+
+\textit{Example.} With \(P=(1)\), \(w=1\), step one exhausts the header and releases a single \(1\). Step two must consume the released occurrence. Inductively every subsequent bit comes from the immediately preceding firing. Changing the sole appendant to \(0\) produces \(1,0,\eps\) at successive stable samples with exactly the same policy.
+
+\section{Regularity and total definitions}\label{regular}
+For a ground tree let \(\arity(S)=0\) and \(\arity(uv)=1+\arity(u)\). Tests of \(\arity=k\) for fixed \(k\) are bounded-depth tests. A frame has \(\arity=4\), a frontier \(\arity=3\). A slot arm before firing has head arity three and after firing has head arity two. A live cell's left child has head arity two and a spent cell's left child has head arity one. These distinctions survive every selected edit to a released payload.
+
+Here are precise parsing conventions for arbitrary trees. Require the outside pair, a finite right spine of frames with left field \(F'X\), \(F'=\pair{S}{L'}\), and a frontier of arity three. Each \(L'\) is a nonempty list of slots. The field \(X\) and the children of the frontier are opaque. Each unused arm is \(K(G)\); each fired arm has shape \((SA)G\), with \(G\) arbitrary. A slot has at most one fired arm. Require the payload \(A\) of a fired one-arm and the input header to be boxes, and inspect their right children as words under the following grammar, with \(G\in\T\):
+\[
+ W ::= S\ \mid\ J_b W\ \mid\ (SW)(B_bG).
+\]
+The zero-arm payload may be ignored. Require fired slots to be a prefix and spent letters to be a prefix, in the orders of Section 3. These conditions over-approximate reachable terms. No test of pristine-copy equality, index equality, slot periodicity, or full history correctness is necessary.
+
+\begin{lemma}\label{regularlem}
+The parse, the stable and empty tests, and the graph of the designated marked occurrence are regular tree languages. The completed selector is a total function on \(\T\).
+\end{lemma}
+\begin{proof}
+All productions above have fixed finite constructor patterns and disjoint alternatives at each role. The parser can send ignored fields to the unrestricted nonterminal \(G\). Extract a word of finite tokens in order: header-cell tokens first, then for each slot a fired/unused token and its visible-cell tokens. Each cell token reports live/spent and its finite letter. This traversal is a finite collection of recursive constructor clauses. Each clause emits fixed tokens and concatenates the streams of the designated children, each used at most once. For any word DFA, a bottom-up tree automaton stores, for each parsing role, the partial transformation on DFA states induced by the resulting stream. A failed clause contributes failure. Composition in the specified order realizes concatenation. Lists, frames, cells and the top pair require only finitely many roles. This constructs the automaton without materializing the stream. The two prefix conditions, parities, emptiness and the last spent bit are DFA tests.
+
+On a singly marked tree, attach to a token the flag that the designated root lies at its pop, arm, or frontier address. Emit a final frontier token. Local fixed address tests and a three-valued mark count (zero, one, multiple) suffice. A word DFA tests that the mark designates the first eligible live cell or unused slot, the correct arm, or the frontier as prescribed. A product with the parity and tag tests settles all policy cases. The relation is functional on its projection, and each marked position is additionally required to be a native redex. Where the parse or nomination fails, choose the first redex in ordinary preorder. Its marked relation and the absence of any successful nomination are regular, the latter by projection and complement. On normal terms return the term itself. The actual encoded paths always lie in the proved cases.
+\end{proof}
+
+Thus one may implement selection by a fixed bottom-up pass and a descent to the unique marked position, recomputing annotations on the current tree. For example, the bottom-up pass stores the unmarked state and the finite set of possible states with one marked descendant. A downward pass carries the accepting context states and follows the unique possible witness. With an explicit occurrence tree this takes \(O(|t|)\) time and \(O(|t|)\) temporary finite annotations. The following construction removes the need to store these annotations.
+
+\begin{prop}[A root-restarted tree walker]\label{walker}
+On binary cyclic programs the selector can start every invocation at the root in the same finite control, observe only node kind and incoming side, and move one edge at a time. It takes \(O(|t|+1)\) elementary moves on every bare term. It has no persistent cursor, marks or work tape.
+\end{prop}
+\begin{proof}
+One read-only scan computes the two parity bits, the last spent bit and flags for any live cell and unused slot. It checks the prefix conditions as it goes. A second scan from the root stops at the prescribed occurrence. It carries only the mode and, for a commit, the one payload-selection bit. All fixed-depth tests in either scan are implemented by a bounded sequence of child/parent moves, returning to the testing position.
+
+The following return paths specify the part of this traversal where an implicit stack would otherwise be a concern.
+\begin{enumerate}
+\item From a word box descend \(R\). Walk down \(R\) at a live cell and \(LR\) at a spent cell. To return from the terminal \(S\), go up one edge at a time from a word node. A parent of arity three is the previous live cell. A parent of arity one has the form \(SA\); ascend once more to the previous spent cell. A parent of arity two is the box. These cases are disjoint, including for an empty word. The paths are inverses of the checked descent.
+\item The header box is at \(LR\) of the whole term. In a fired one-arm the box is at \(LR\) of that arm, which is at \(R\) of the slot. Each return to the slot or to the header therefore takes a fixed number of moves. At a list cell enter its slot by \(LR\), return by two upward moves, and continue the list by \(R\).
+\item At the list terminator ascend through list cells. Each is a pair whose first field is a slot, hence an application. The first parent pair with first field \(S\) is the template \(F'\). Ascend twice to the frame and take \(R\) to the next frame or frontier. Tests for a frame, a frontier and a genuine slot use bounded depth. Dormant program words and copied history are skipped.
+\end{enumerate}
+On a failed check, climb to the root and do a preorder search for the first actual redex. Incoming side implements entry and the two return modes for this depth-first search. If none exists the term is normal. On malformed input, every completed return above retraces a previously verified downward segment, and a failed probe goes straight to fallback. Each of the two scans visits disjoint word/list/frame regions in forward order, with only a bounded number of visits per node and bounded probes per visit. Thus the running time is linear on all inputs. The second scan changes the tree only at its final verified contraction. This gives the same choice on the promised terms and the regular fallback of Lemma~\ref{regularlem} when a required test fails.
+\end{proof}
+For a fixed finite queue table in the next section, decoding a finite tag, checking the menu layout and returning from an arm take a bounded number of additional movements depending only on its finite dimensions. The word boxes and period-list traversal are unchanged. The same two-pass implementation therefore applies to that fixed specialization.
+
+\section{Finite menus and register output}\label{numeric}
+The allocation and word operations also simulate a finite queue machine. The queue alphabet can then contain a letter for each register, so that its multiplicity gives the output.
+
+A deterministic finite queue machine has finite states \(Q\), finite alphabet \(\Sigma\), and nonterminal transitions
+\[
+       (q,a z)\longmapsto(q',zv),\qquad T[q,a]=(q',v).
+\]
+Choose fixed orders on \(Q,\Sigma\), and encode their indices by \(B_0=S,\ B_{i+1}=S B_i\). Equation~\eqref{read} applies verbatim to any fixed finite alphabet. Use one slot per allocated period. This slot is a binary menu of arms indexed in row-major order by \((q,a)\). Its arm is
+\begin{equation}
+                     K\bigl(\pair{B_{q'}}{\bx{\word(v)}}\bigr).       \label{menuarm}
+\end{equation}
+Here the subscript \(q'\) denotes the fixed index of the state. For an explicit layout, pad the row-major list to the next power of two by repeating the last arm. A leaf containing \(a'\) is \(\pair{SS}{a'}\); an internal node with children \(l,r\) is \(\pair{S}{\pair l r}\). No padding leaf is selected. Use arbitrary dummy rows for a terminal state. The fixed template and seed are \eqref{seed} with \(L=\operatorname{enc}(\mathrm{menu}::\mathsf{nil})\). The same frontier equations apply.
+
+The current state is the tag of the last fired arm, or \(q_0\) if none has fired. Each fired arm exposes its state and its word at \(LR\); the word within that pair is at \(RR\). Read all such words in order, after the header. The policy of Section 3 now fires the arm indexed by the current state and the last spent letter. At a stable terminal state it takes only the frontier action. The state transition and the word in \eqref{menuarm} are read from the released payload. The selector contains the finite key indexing convention and the halt-state test. Changing every target state and every appendant in a table of the same dimensions leaves the selector valid without modification.
+
+\begin{lemma}\label{queue}
+At stable samples the decoded state and queue of this construction realize every successive finite queue-machine transition on a nonempty queue. Each such transition costs two to four contractions. A stable terminal state persists with its output.
+\end{lemma}
+\begin{proof}
+After popping \(a\), the previous state is still \(q\). Allocation changes neither datum. Firing \((q,a)\) releases one copy of \(\pair{B_{q'}}{\bx{\word(v)}}\) after all older active words. Its tag becomes the new current state and its letters give exactly \(zv\). The prefix and count invariants from Theorem~\ref{main} give induction and persist during terminal allocation. For regularity, a finite menu parser records whether zero or one arm is fired and, if appropriate, its state. The finite-state summaries of Lemma~\ref{regularlem} now track the last released state and the marked arm's key. A malformed menu falls under the same fallback.
+\end{proof}
+
+\paragraph{\textit{Compiling registers into the fixed table.}}
+A register program with \(r\ge1\) registers operates by increment with a target, conditional decrement with two targets, unconditional jump, and halt. Use two different queue letters \(a_i,\#_i\) per register. At each instruction boundary its queue is the literal row
+\begin{equation}
+       R(n_0,\ldots,n_{r-1})=
+       a_0^{n_0}\#_0\,a_1^{n_1}\#_1\cdots a_{r-1}^{n_{r-1}}\#_{r-1}. \label{row}
+\end{equation}
+States are \((q,f)\) with one flag \(f\in\{0,1\}\), initially zero. During one sweep pop each old letter and append a copy according to the following rules. Increment \(i\) replaces the output for \(\#_i\) by \(a_i\#_i\). Decrement \(i\) suppresses the first \(a_i\), setting \(f=1\), and copies any subsequent \(a_i\). Jump copies every letter. On reading the final delimiter choose the prescribed successor, including the zero or positive successor according to the accumulated flag, and clear \(f\). When incrementing the last register, emit its extra letter before changing state. All of these instructions specify individual entries of the finite table \eqref{menuarm}.
+
+\section{The register-machine encoding}
+Every old letter precedes every newly appended letter until the old final delimiter is read. Consequently one complete sweep produces exactly the row \eqref{row} for the instructed successor. The flag in a decrement sweep is one precisely when an old unit of the selected register was present. The last delimiter occurs once per row, including when every register is zero. Induction on instructions now proves the simulation for every finite run. The queue is nonempty at each sweep boundary. Before the final delimiter of a sweep is consumed, an old delimiter remains. The intermediate empty word between pop and commit cannot trigger a stable halt.
+
+Fix the interpreter \(U\) in appendix A of the observed-computation manuscript \cite{observed}. It has 446 primitive labels and 29 registers. Appendix~\ref{app:code} lists its instructions. Its registers \(E,X,\mathit{program},\mathit{argument}\) are initialized to \(e,x,e,x\), in that order, and all others to zero. Its output register has zero-based index 4. Write \(\nu(e,x)\) for this vector, and \(T_U\) for its queue table constructed in Section~\ref{numeric}. Its finite code is fixed independently of \(e,x\). We may now take
+\begin{align}
+ E_U(e,x)&=\pair{\bx{\word(R(\nu(e,x)))}}{X_0 X_0}\quad
+        \text{with the fixed template for }T_U, \notag\\
+ \sigma_U&=\text{the completed one-contraction menu selector of Lemma \ref{queue}},\notag\\
+ H_U(t)&=\mathbf 1\{\text{valid parse, stable parities, last state is terminal}\}, \notag\\
+ D_U(t)&=
+ \begin{cases}
+    |V(t)|_{a_4}, & H_U(t)=1,\\
+    \bot, & H_U(t)=0 .
+ \end{cases}                                                     \label{maps}
+\end{align}
+The initial state convention applies when there are no fired slots. For the specified \(U\), the unique reachable terminal state is the halt label with cleared flag. One can designate just that state for the detector and policy.
+
+\begin{theorem}\label{output}
+For all \(e,x,y\in\N\),
+\[
+ U(e,x)\downarrow=y\ \iff\
+ \exists k\ge0\ \bigl(H_U(\sigma_U^k E_U(e,x))=1\ \land\
+                      D_U(\sigma_U^k E_U(e,x))=y\bigr).
+\]
+\end{theorem}
+\begin{proof}
+A finite interpreter run has finitely many finite sweeps. Lemma~\ref{queue} realizes each of their letters and enters the terminal state on the final delimiter of the last sweep. The row at that time contains exactly \(y\) live \(a_4\)'s. In the reverse direction a stable terminal sample can first occur only at initialization or on committing an actual transition into the terminal state. That commit closes a complete sweep. The sweep induction identifies a genuine halted interpreter configuration. All subsequent contractions preserve its row. This also proves uniqueness of every accepted numerical answer.
+\end{proof}
+
+\paragraph{\textit{Universality of the register model.}}
+The original indexing uses \(0\) for the empty list and \([u\mid v]=2^u(2v+1)\) for a cell. Instruction zero halts; increment is \([0\mid[j\mid l]]\); conditional decrement is \([1\mid[j\mid[l_0\mid l_1]]]\). The interpreter fetches the instruction, splits its finite fields by repeated halving, traverses the encoded register list, updates its selected entry and reconstructs the list. Malformed code enters a self-loop. Its finite expansion uses unit increments, guarded decrements and jumps. Each valid list operation terminates and preserves the represented values. Independently, two natural registers can encode the strings to the left and right of a tape head as base-\(B\) stacks with nonzero symbol digits. Finite register programs implement push by fixed-base multiplication and addition, and pop by fixed-base quotient and remainder, using scratch registers. The scanned symbol and tape-machine state require finite control. Every tape instruction therefore has a terminating register subroutine, including extension by a blank. This gives a program for every partial recursive numerical function \cite{register}. Our \(S\)-encoder prints the two unary inputs and fixed syntax; it never runs the interpreter.
+
+\input{Certified_Macro}
+\input{Numerical_Certificate}
+\section{Computational attribution}\label{attribution}
+The two original observational constructions use the equivalence
+\[
+ F(e,x,c,z)\ \land\ \bigwedge_{j<b}Q_j=PT_j
+ \quad\Longleftrightarrow\quad
+ \exists i\,[z=z_i(e,x)\ \land\ c=c_i(e,x)] .
+\]
+The variable displacement between packed rows matters. The manuscript gives a concrete false halt if this comparison is dropped. Its Theorem 10.2 proves decidability on the specified classes of complete replacement records. Proposition 11.1 constructs the first checkpoint from an ordered unary clock by a fixed dimension-three first-order interpretation. For the second observer, the later repository note gives an exact quadratic-size shared graph and an observer-equivalent \emph{ordinary} tree of linear size produced in logspace. Its four readouts agree at every checkpoint \cite{observed,replacement}. The exact unfolded second checkpoint can be exponential. These comparisons preserve the history theorem and explain why its source separation leaves the attribution objection open. Checking a correct history is a mathematical computation; the issue here is that independent clock expansions supply all inputs needed by the same verifier.
+
+In Theorem~\ref{main}, each nonempty source transition is realized from the preceding queue. The program is an arbitrary input to a single selector. The selector conveys one bit to the next slot. The last consumed bit determines which arm to fire. Its other decisions find the next cell, decide between pop and commit, and request allocation. The local walker skips the interior of the dormant appendant when selecting either arm. For every word \(v\), the same arm contraction exposes a whole residual of \(\word(v)\). Later pops rewrite that occurrence. The only state carried across invocations is the \(S\)-tree. The numerical specialization likewise obtains its next control label and output word from a physical record; the detector reads one finite label and parity, and the decoder counts one kind of living letter. It can equivalently emit one unary symbol per such occurrence.
+
+\begin{prop}\label{clock}
+For a fixed numerical template, a clock that leaves the header untouched and supplies an arbitrary input-independent rail cannot yield the universal halting domain with \emph{any} regular tree detector. The same conclusion holds for any regular detector after a fixed finite-copying MSO word-to-tree transduction of a standard unary input-and-tick word.
+\end{prop}
+\begin{proof}
+On \(\pair{\bx{\word(R(\nu(e,x)))}}{C_n}\), any bottom-up detector sees the header only through one of finitely many states. Whether it can accept at some \(n\) is a fixed subset of these states, even if the sequence \(C_n\) is arbitrary. Compute the header state and test membership in that finite subset. This is a decidable input language. No uniform algorithm for extracting the subset from an arbitrary clock is claimed. For the second assertion, a run of a tree automaton can be pulled back to the copies of word positions by finitely many monadic state sets. Transition consistency and acceptance are MSO word conditions. Their word language is regular, and deleting an existential final tick block preserves regularity. Either conclusion contradicts universality of the halting domain in Theorem~\ref{output}.
+\end{proof}
+
+Two earlier constructions admit sharper bounds. The first has effectively Presburger visit sets for regular tree detectors, and regular tests on the exact second checkpoints have regular unary timing \cite{generator,replacement}. Their original arithmetic tests exceed those bounds.
+
+A second check isolates the contribution of native copying. Replace the contraction by any single combinator rule with the same left side whose right side contains only application and uses each of \(x,y,z\) at most once, with no new constant. Each such rewrite strictly decreases leaf count. Every selected run then reaches a normal form in fewer than the initial number of leaves. Its observed halt problem for the same effective encoder and bounded readouts is decidable by direct execution. This excludes all such linear replacements even with the choice of occurrence still available.
+
+These results address passive enumeration and the loss of copying. A different \emph{active} medium with unbounded fresh records, writable progress marks and conditional release of stored words can implement the same queue algorithm. In particular, the controller participates in the simulated transition by selecting its arm. The universality theorem uses a fixed regular choice of redex that depends on the current term, as in the selected-path formulation \cite{announcement,prize}.
+
+\input{Attribution_Appendix}
+\section{Computational checks and related work}\label{sources}
+The reference implementation contracts redexes in immutable application trees, rebuilding ancestors so only the selected occurrence changes. It compares every stable queue with an independent source trajectory and checks the intermediate parity difference after every pop or allocation. In the source-level register comparisons, a separate implementation of increment, decrement and jump checks the complete numeric row. Cached facts in the optional full-interpreter run are deterministic functions of immutable menu subtrees. They accelerate reconstruction of the selected occurrence. The local walker of Proposition~\ref{walker} reconstructs every nomination from scratch.
+
+\begin{center}
+\small
+\begin{tabular}{@{}lr@{}}
+\toprule
+Test & Result\\
+\midrule
+Cyclic program/input seeds & 916\\
+Source steps taking 2, 3, and 4 contractions & 3,286;\ 1,662;\ 2,150\\
+Finite-queue transitions in direct register comparisons & 1,008\\
+Register instructions checked on 30 seeds & 171\\
+Native contractions across the bounded regression suite & 25,763\\
+Fresh-root choices compared to the regular scan & 27,480\\
+All bare trees with at most nine leaves checked & 2,056\\
+Complete interpreter run \(U(1,0)=0\) & 6,552 contractions\\
+Complete interpreter run \(U(1,1)=1\) & 11,668 contractions\\
+\bottomrule
+\end{tabular}
+\end{center}
+The first 840 cyclic cases exhaust all periods one and two, appendant lengths at most two, and seed lengths at most three, up to twelve source steps or empty termination. Another 75 programs are deterministically sampled and one singleton program follows 128 successive bits, including 127 released by earlier steps. The two full runs use object code \(1\), the program that immediately returns its input, on the actual 446-label interpreter. It executes 66 and 108 primitive register instructions, respectively. The separate root-walk replay compares 30 consecutive nominations per cyclic seed and checks legality or normality on every bare tree through nine leaves. The physical-window test checks a further 224 completed FIFO runs. For each run, the windows read from the final tree agree with the queues recorded by an independent tag interpreter.
+
+\paragraph{\textit{Word readers and program allocation.}}
+An earlier observational construction encoded computation histories in selected terms \cite{observed}. Its clock replacements are discussed in Section~\ref{attribution} \cite{replacement}. A subsequent register simulation used a regular selector and an allocator for writable slots \cite{five}. Here each newly allocated frame holds an entire period of the cyclic program. One contraction releases a word of arbitrary finite length, and subsequent contractions consume that copy in queue order.
+
+Langdon's word reader distinguishes live and spent cells and admits a finite controller that restarts at the root \cite{langdonword}. Equation~\eqref{read} uses this convention. A related selected-port identity illustrates the role of the contraction address \cite{langdonport}. For \(H_C(D)=S(SC)D\), contraction at the root followed by two contractions at its right child gives
+\[
+ S C H_C(D)Y \longrightarrow_S^3 (CY)((C(DY))(Y(DY))).
+\]
+In our simulation, equations~\eqref{reset} and~\eqref{alloc} supply the next program period when the current one has been exhausted.
+
+\paragraph{\textit{Earlier universality under selected reduction.}}
+Cinematic Strawberry, in work directed by Alexander Filin, established pure-\(S\) universality under a fixed root-restarted controller with a regular halting language \cite{filin}. Its Theorem~1R gives cyclic tag trajectories and ordered source observations. That construction specializes a dispatcher to the cyclic program. In the present construction the same controller acts on every finite program, which is stored in the initial term. Our numerical proof uses Cinematic Strawberry's tape-to-tag compiler, numbering of machine tables, and terminal-row reader. The FIFO representation and the proof that the reader's input occurs in the native term are given here.
+
+\input{Formal_Evidence}
+
+\section*{Acknowledgments}
+OpenAI Codex assisted with the mathematical derivations, Lean formalization, reference implementation, testing, and preparation of the manuscript.
+
+\appendix
+\input{Register_Interpreter}
+\Needspace{13\baselineskip}
+\section{Primitive code of the numerical interpreter}\label{app:code}
+The following table gives every entry in address order. The first member of a tuple encodes the operation. The remaining members are operands. For program counter \(q\), the instructions are
+\[
+ \begin{gathered}(0):\mathrm{halt},\qquad (1,i,h):(n_i,q)\gets(n_i+1,h),\qquad(3,h):q\gets h,\\
+ (2,i,h,j): (n_i,q)\gets
+ \begin{cases}(0,h)&n_i=0,\\(n_i-1,j)&n_i>0.\end{cases}\end{gathered}
+\]
+Input slots are \((e,x,e,x)\) followed by zeros. A halt returns slot 4.
+\input{Interpreter_Table}
+\Needspace{13\baselineskip}
+\section{The fixed cyclic program}
+The fixed program has 912 phases. The table lists the first 114 productions as words of symbol indices. A superscript denotes repetition. The remaining 798 appendants are empty. The following substitution gives the binary word appended at each phase. The tape-to-word translation is that of~\cite{filin}.
+\input{Cook_Table}
+\clearpage
+\begingroup\raggedright
+\bibliographystyle{plain}
+\bibliography{references}
+\endgroup
+\end{document}

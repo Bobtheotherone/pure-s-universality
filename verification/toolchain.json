@@ -1,0 +1,27 @@
+{
+  "target": "x86_64-unknown-linux-gnu",
+  "lean_version": "4.33.1",
+  "lean_repository_commit": "819816b2e0a3bf405af45ae5c7af2491d8f5bee6",
+  "lake_version": "5.0.0-src+819816b",
+  "official_archive": {
+    "name": "lean-4.33.1-linux.tar.zst",
+    "bytes": 570405234,
+    "sha256": "890afd185370f85666025b883914ab4f4b339136f8c96167b69cfb62aecaf235"
+  },
+  "binaries": {
+    "lean": "e8baaa71855a616dc351028f3ad2200051b0671f423a1696a100e809302d5550",
+    "lake": "60330ab6f07dce20f3fa9ebb08e8b984ea9549eac172afeb15d9d2227060e2b3",
+    "leanchecker": "84bc3e7cd6efa5bfecd1e7c37571fed9428fb2b3e16da0ddf62f2163573486d0"
+  },
+  "alternate_checker": {
+    "commit": "8223d223ed98661882e95d9d6a7126df7097cd76",
+    "batteries_commit": "76e1c118b0700b4ceafe99532e887d6431625e1a",
+    "executable_sha256": "7f6941f9b54c7d2f15c104abdc2b4f9a6f2f201025ced5e638aa7833f0ec0a5d",
+    "build_exit": 0
+  },
+  "runtime": {
+    "python": "Python 3.12.14",
+    "tectonic": "Tectonic 0.17.0",
+    "Wolfram_Language_implementation": "Mathics3 10.0.1"
+  }
+}

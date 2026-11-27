@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+type: software
+message: "Please cite the accompanying paper when using this formalization or evaluator."
+title: "Computational universality of the pure S-calculus under a uniform selected reduction"
+authors:
+  - family-names: Mercado-Barbosa
+    given-names: Radames
+  - family-names: Langdon
+    given-names: Anthony
+repository-code: "https://github.com/Bobtheotherone/pure-s-universality"

@@ -1,0 +1,95 @@
+{
+  "edition": "Public research edition",
+  "authors": "Radames Mercado-Barbosa and Anthony Langdon",
+  "certified_parent": "4d99d91c0b4f9891f502f6a615f06a6b4ea97972",
+  "previous_manuscript_edition": "4d72e89854458755a7b56ed5e4723cb4b170c2cc",
+  "unchanged_source_trees": {
+    "formal": "7ae1064667be33141a0b5528c271e5303e65c58c",
+    "implementation": "144fb9256d4fef10d6c3aac538715010f312abd0",
+    "tests": "d3f8cf9e6546130586e573fbf78c3994abc04b05",
+    "third_party/cinematic-strawberry-compiler": "aa8505c8e839dfa65f4dd1e14470f5a1db23a57f"
+  },
+  "proof_evidence": "The public edition passed a clean Lean build, a fresh kernel check of CandidateCertificate, and the separately pinned lean4lean replay on this source tree.",
+  "paper_build": "Tectonic 0.17.0",
+  "rendering": "Poppler 26.05.0",
+  "visual_review": "The previous edition was inspected page by page. We compared all 34 rendered pages against that edition and visually reinspected both pages with any change.",
+  "printed_data_comparison": {
+    "register_instructions_in_address_order": 446,
+    "cyclic_productions_in_phase_order": 114,
+    "verification": "scripts/check_sources.py"
+  },
+  "papers": {
+    "Universal_Pure_S.pdf": {
+      "pages": 24,
+      "sha256": "df01550e0ba5506f25b8bf52a781aa289dd1a5de295a3346cab4d0498db5c2eb",
+      "pdf_author": "Radames Mercado-Barbosa and Anthony Langdon",
+      "byline_box_pt": [
+        203.98,
+        156.93,
+        408.02,
+        165.9
+      ],
+      "list_encoding": "enc(nil) = S",
+      "encoding_location": "Section 2, page 2",
+      "raster_dpi": 125,
+      "inspected_pages": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24
+      ],
+      "changed_rendered_pages_since_previous_edition": [
+        18,
+        24
+      ]
+    },
+    "Symbolic_Complete_Proof.pdf": {
+      "pages": 10,
+      "sha256": "1752111621a1298bdabfd63d6e34e889a367018096b40c17c5f80bc58e2b51ec",
+      "pdf_author": "Radames Mercado-Barbosa and Anthony Langdon",
+      "byline_box_pt": [
+        176.42,
+        75.93,
+        435.58,
+        87.88
+      ],
+      "list_encoding": "enc(nil) = S",
+      "encoding_location": "Equation (5), page 1",
+      "raster_dpi": 135,
+      "inspected_pages": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "numbered_equations": 159,
+      "changed_rendered_pages_since_previous_edition": []
+    }
+  }
+}

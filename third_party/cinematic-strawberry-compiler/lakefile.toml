@@ -1,0 +1,3 @@
+name = "cinematicCook"
+[[lean_lib]]
+name = "PureSFormal"

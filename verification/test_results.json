@@ -1,0 +1,189 @@
+{
+  "python": "3.12.14",
+  "architecture": "x86_64",
+  "quick": false,
+  "checks": [
+    {
+      "label": "micro-controller",
+      "argv": [
+        "python3",
+        "tests/test_micro.py"
+      ],
+      "exit": 0,
+      "seconds": 1.3923915109990048,
+      "child_cpu_seconds": 1.391165,
+      "stdout": "PASS 16448 mode/tree cases; 331 blocks; 1066 monitored contractions\n",
+      "expected_fragments": [
+        "16448 mode/tree cases; 331 blocks; 1066 monitored contractions"
+      ],
+      "passed": true
+    },
+    {
+      "label": "bare-macro",
+      "argv": [
+        "python3",
+        "tests/compare_bare_macro.py"
+      ],
+      "exit": 0,
+      "seconds": 0.736279270000523,
+      "child_cpu_seconds": 0.7357390000000001,
+      "stdout": "PASS 120 seeds; 331 complete bare macros; 1066 exact primitive addresses\n",
+      "expected_fragments": [
+        "120 seeds;"
+      ],
+      "passed": true
+    },
+    {
+      "label": "assembler",
+      "argv": [
+        "python3",
+        "implementation/reference/interpreter_assembly.py"
+      ],
+      "exit": 0,
+      "seconds": 0.034757057001115754,
+      "child_cpu_seconds": 0.03439499999999951,
+      "stdout": "PASS 446 assembled instructions; 29 register names\n",
+      "expected_fragments": [
+        "446 assembled instructions; 29 register names"
+      ],
+      "passed": true
+    },
+    {
+      "label": "native-differential",
+      "argv": [
+        "python3",
+        "implementation/reference/verify_selected_s.py"
+      ],
+      "exit": 0,
+      "seconds": 1.273132930000429,
+      "child_cpu_seconds": 1.272694,
+      "stdout": "cyclic seeds: 916\ncyclic steps of length 2: 3286\ncyclic steps of length 3: 1662\ncyclic steps of length 4: 2150\nfinite-queue transitions: 1008\nnative contractions: 25763\nregister instructions: 171\nregister seeds: 30\n",
+      "expected_fragments": [
+        "cyclic seeds: 916",
+        "native contractions: 25763",
+        "register instructions: 171"
+      ],
+      "passed": true
+    },
+    {
+      "label": "walker",
+      "argv": [
+        "python3",
+        "implementation/reference/verify_root_walk.py"
+      ],
+      "exit": 0,
+      "seconds": 4.780566440000257,
+      "child_cpu_seconds": 3.9002070000000004,
+      "stdout": "Fresh-root agreement: 27480 native selections on 916 seeds\nAll bare trees with at most nine leaves: 2056\n",
+      "expected_fragments": [
+        "27480 native selections",
+        "2056"
+      ],
+      "passed": true
+    },
+    {
+      "label": "arbitrary-and-menu",
+      "argv": [
+        "python3",
+        "tests/adversarial.py"
+      ],
+      "exit": 0,
+      "seconds": 1.1824304229994596,
+      "child_cpu_seconds": 0.8087919999999995,
+      "stdout": "{\"binary\": {\"arbitrary_numeric_trees\": 2056, \"program_seed_pairs\": 20, \"selections\": 480}, \"numeric\": {\"compared_native_contractions\": 489, \"program_inputs\": 9}}\n",
+      "expected_fragments": [
+        "\"compared_native_contractions\": 489"
+      ],
+      "passed": true
+    },
+    {
+      "label": "public-binary",
+      "argv": [
+        "python3",
+        "implementation/reference/evaluator.py",
+        "1,",
+        "101",
+        "--limit",
+        "6"
+      ],
+      "exit": 0,
+      "seconds": 0.08190279500195174,
+      "child_cpu_seconds": 0.059199000000001334,
+      "stdout": "{\"contractions\": 0, \"word\": \"101\", \"halt\": false}\n{\"contractions\": 4, \"word\": \"011\", \"halt\": false}\n{\"contractions\": 6, \"word\": \"11\", \"halt\": false}\n",
+      "expected_fragments": [
+        "\"contractions\": 6, \"word\": \"11\""
+      ],
+      "passed": true
+    },
+    {
+      "label": "physical-numerical",
+      "argv": [
+        "python3",
+        "tests/test_numerical_data.py"
+      ],
+      "exit": 0,
+      "seconds": 31.289150534001237,
+      "child_cpu_seconds": 27.065264,
+      "stdout": "224 completed physical FIFO archives; native menu results [5, 4, 0, 7, None]\n",
+      "expected_fragments": [
+        "native menu results [5, 4, 0, 7, None]"
+      ],
+      "passed": true
+    },
+    {
+      "label": "U(1,0)",
+      "argv": [
+        "python3",
+        "implementation/reference/verify_selected_s.py",
+        "--universal",
+        "1",
+        "0",
+        "9000"
+      ],
+      "exit": 0,
+      "seconds": 36.39791852000053,
+      "child_cpu_seconds": 36.221654,
+      "stdout": "U(1, 0) = 0; native contractions 6552; FIFO transitions 2162\n",
+      "expected_fragments": [
+        "U(1, 0) = 0; native contractions 6552; FIFO transitions 2162"
+      ],
+      "passed": true
+    },
+    {
+      "label": "U(1,1)",
+      "argv": [
+        "python3",
+        "implementation/reference/verify_selected_s.py",
+        "--universal",
+        "1",
+        "1",
+        "15000"
+      ],
+      "exit": 0,
+      "seconds": 103.92389209099929,
+      "child_cpu_seconds": 103.784353,
+      "stdout": "U(1, 1) = 1; native contractions 11668; FIFO transitions 3860\n",
+      "expected_fragments": [
+        "U(1, 1) = 1; native contractions 11668; FIFO transitions 3860"
+      ],
+      "passed": true
+    },
+    {
+      "label": "wolfram-language",
+      "argv": [
+        "mathics",
+        "-q",
+        "-f",
+        "examples/CheckWolfram.wl"
+      ],
+      "exit": 0,
+      "seconds": 10.58108251199883,
+      "child_cpu_seconds": 12.33504,
+      "stdout": "{{1, 0, 1}, {0, 1, 1}, {1, 1}}\nPASS cyclic samples and initially empty input\n",
+      "expected_fragments": [
+        "PASS cyclic samples and initially empty input"
+      ],
+      "passed": true
+    }
+  ]
+}

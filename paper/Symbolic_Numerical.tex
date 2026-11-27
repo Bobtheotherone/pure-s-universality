@@ -1,0 +1,102 @@
+\begin{gather}
+\mathbb B=\{0,1\},\quad
+\mathcal M=\bigl((\mathbb B\times\{-1,0,1\}\times\mathbb N)_\bot^2\bigr)^*,\quad
+\mu:\mathbb N\rightleftarrows\mathcal M:\gamma,\quad
+ \mu\gamma=\mathrm{id},\ \gamma\mu=\mathrm{id}.\\
+r_0(x)=(0,1,0\,1^x0),\quad
+\nu(q,h,T)=\max\{j\le |T|-h:\operatorname{take}_j(\operatorname{drop}_h T)=1^j\}.\\
+\delta_M(q,h,T)=\bot\quad\Longleftrightarrow\quad M_{q,T_h}=\bot.\notag\\
+M_{q,T_h}=(a,d,q')\Rightarrow
+ (\widetilde{T},\tilde h)=(T[h:=a],h+d),\quad
+ \delta_M(q,h,T)=(q',h',T'),\\
+(h',T')=\begin{cases}
+(0,0\widetilde T)&\tilde h<0,\\
+(\tilde h,\widetilde T)&0\le\tilde h<|T|,\\
+(\tilde h,\widetilde T0)&\tilde h=|T|.
+\end{cases}\qquad \delta_M(\bot)=\bot .\\
+r\in\Theta_{e,x}\iff\exists n:\delta_{\mu(e)}^n(r_0(x))=r\ne\bot,\
+\delta_{\mu(e)}(r)=\bot,\qquad U_T(e,x,y)\iff y\in\nu[\Theta_{e,x}].\label{sym:terminalnum}\\
+s=(\mu(e),0,1^x),\quad w=C(\pi s),\quad P=P_*,\quad c_0=(0,w),\quad
+ c_{j+1}=\partial_P(c_j),\quad \partial_P(i,\eps)=(i,\eps).\\
+\mathcal C\subseteq(\mathbb Z/p\times\mathbb B^*)\times\mathbb B^*,\qquad
+\mathcal C=\mu X.\ \{((i,\eps),\eps):i\in\mathbb Z/p\}\\
+{}\cup\{((i,bz),bd):((i+1,zv_i^b),d)\in X\}.\notag\\
+((i,\eps),\eps)\in\mathcal C\Rightarrow \eps=\eps\eps,\qquad
+d=zv_i^b a\Rightarrow bd=(bz)(v_i^b a).\\
+((i,z),g)\in\mathcal C\ \Rightarrow\ \exists a:\ g=za,\quad
+ \operatorname{take}_{|z|}(g)=z .\label{sym:prefixnum}\\
+W(j,i,u,\eps)=[(j,i,\eps)],\quad
+W(j,i,u,bd)=(j,i,\operatorname{take}_{u}(bd))::W(j+1,i+1,(u\dot-1)+b|v_i|,d).\\
+\Omega(j,c,0)=[(j,c)],\quad
+\Omega(j,c,k+1)=(j,c)::\Omega(j+1,\partial_Pc,k).\\
+W(j,i,0,\eps)=\Omega(j,(i,\eps),0),\qquad
+W(j+1,i+1,|zv_i^b|,d)=\Omega(j+1,\partial_P(i,bz),|d|)\notag\\
+{}\overset{\eqref{sym:prefixnum}}{\Longrightarrow}
+W(j,i,|bz|,bd)=\Omega(j,(i,bz),1+|d|).\\
+((i,z),g)\in\mathcal C\Rightarrow
+ W(j,i,|z|,g)=\Omega(j,(i,z),|g|),\quad
+ \partial_P^{|g|+k}(i,z)\in(\mathbb Z/p)\times\{\eps\}.\label{sym:windnum}\\
+\begin{gathered}
+E_T(e,x)=\pair{\wt(w)}{t_0(w)},\qquad
+\sigma_T(\pair a t)=\pair a{B(t)},\qquad
+H_T(\pair a t)=h(t),\\
+t\notin\pair{\T}{\T}\quad\Longrightarrow\quad
+(\sigma_T(t),H_T(t),D_T(t))=(t,0,\bot).
+\end{gathered}\\
+g=\beta(B^k t_0(w)),\quad h(B^k t_0(w))=1
+ \Rightarrow (c_0,g)\in\mathcal C,\quad
+ \sigma_T^k E_T(e,x)=\pair{\wt(w)}{B^k t_0(w)}.\label{sym:physnum}\\
+K=K(w),\qquad
+ L(j,i,z)=\begin{cases}
+ \bot&i\ne0,\\
+ L_0(\chi_{114}(z))&i=0,\ j=0,\\
+ L_+(\chi_{114}(z))&i=0,\ j>0 ,
+ \end{cases}\quad
+ \chi_{114}\big((0^u1\,0^{113-u})v\big)=u::\chi_{114}(v).\\
+\chi_{114}(\eps)=\eps,\qquad
+ z\notin\{0^u1\,0^{113-u}:u<114\}^*\Rightarrow\chi_{114}(z)=\bot,\quad
+ L_0(\eps)=L_+(\eps)=\bot.\\
+ r'=(\tau\circ\kappa_K\circ\eta_K\circ\rho_K\circ L)(j,i,z),\quad
+ R_w(j,i,z)=
+ \begin{cases}r'&r'\ne\bot,\ \lambda_K(r')=1,\\ \bot&r'=\bot\ \lor\ \lambda_K(r')=0.\end{cases}\\
+ K=\mathsf{decodeContext?}(w),\quad (L_0,L_+)=(\mathsf{decodeCanonical?},\pi_{\rm config}\circ\mathsf{decodeArrival?}),\\
+ \begin{gathered}
+\rho_K=K.\mathsf{decodeBoundary?},\quad
+ \eta_K=\mathsf{decodeWord?}_{K.\mathrm{ordinaryShape}},\\
+\kappa_K=\mathsf{decodeCounterWord?}_{K.\mathrm{counterShape}},
+\end{gathered}\\
+ \tau=\mathsf{decodeTapeBoundary?},\quad\lambda_K=\mathsf{terminalRow}(K,\cdot),\quad
+ R_w=\mathsf{decodeTerminalTape?}_{\mathcal F}(w,\cdot,\cdot),\\
+\begin{gathered}
+\mathcal F=\mathrm{47edfaa400209dee85837e032dec0620915004e5},\\
+\{r:\exists j,\ R_w(j,c_j)=r\ne\bot\}=\Theta_{e,x},\quad R_w(j,i,\eps)=\bot.
+\end{gathered}\label{sym:refnum}\\
+A(w,g)=\bigl[\nu(r):(j,i,z)\in W(0,0,|w|,g),\ R_w(j,i,z)=r\ne\bot\bigr],\\
+D_T(\pair a t)=
+ \begin{cases}\operatorname{head}_{\bot} A(\beta_0(a),\beta(t))&h(t)=1,\\ \bot&h(t)=0.\end{cases}
+ \qquad \beta_0(\wt(w))=w.\\
+\eqref{sym:windnum}\land\eqref{sym:physnum}\land\eqref{sym:refnum}
+\Rightarrow \{y:y\in A(w,g)\}=\nu[\Theta_{e,x}].\\
+m\le n,\ \delta^m(r_0)=r,\ \delta(r)=\bot,\
+\delta^n(r_0)=r'\ne\bot
+ \Rightarrow n=m,\ r'=r,\qquad |\Theta_{e,x}|\le1.\\
+\Theta_{e,x}\ne\varnothing\iff\exists k:\ h(B^kt_0(w))=1,\qquad
+U_T(e,x,y)\iff\exists k:\ H_T(\sigma_T^kE_T)=1,\ D_T(\sigma_T^kE_T)=y.\label{sym:numerical}\\
+B(t)=u\ne t\Rightarrow\exists j\in\{2,3,4\}:\
+ t\R^j u,\ F^j(0,t)=(0,u),\ \forall i\ (0<i<j\Rightarrow\pi_1F^i(0,t)\ne0).\\
+h(t)=1\ \land\ h_\mu(F^j(0,t))=1\Rightarrow F^j(0,t)=(0,t),\quad
+F(\dagger,t)\in\{\dagger\}\times\T.\\
+j=k+(j-k),\ k\ge2,\ F^k(0,t)=(0,u)
+ \Rightarrow F^j(0,t)=F^{j-k}(0,u),\quad j-k<j.\\
+h_\mu(F^j(0,t_0))=1\Rightarrow\exists n:\ F^j(0,t_0)=(0,B^nt_0),\qquad
+\forall n\ \exists j:\ F^j(0,t_0)=(0,B^nt_0).\\
+ U_T(e,x,y)\iff\exists j,u:\ F^j(0,t_0(w))=(0,u),\
+ h(u)=1,\ D_T(\pair{\wt(w)}u)=y.\\
+N=q^r,\quad a(n)=H_{\!Q}(\alpha(T^n v)),\quad
+ J=\{n:a(n)=1\},\quad J\ne\varnothing\Rightarrow \min J<N.\\
+\begin{aligned}
+\forall d:\T^r\to\mathbb N_\bot,\quad
+ &\exists n:\ n\in J,\ (\forall j<n,\ j\notin J),\ d(T^n v)=y\\
+\iff{}\ &\exists n<N:\ a(n)=1,\ (\forall j<n,\ a(j)=0),\ d(T^n v)=y .
+\end{aligned}
+\end{gather}

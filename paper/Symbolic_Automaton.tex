@@ -1,0 +1,47 @@
+\begin{gather}
+\mathbb B=\{0,1\},\quad \overline X=X\sqcup\{\bot\},\quad
+x\triangleright y=\begin{cases}x&x\ne\bot,\\y&x=\bot,\end{cases}\quad
+[x]P=\begin{cases}P&x=1,\\\bot&x=0.\end{cases}\\
+V=(d,c,b,l,u,f,i,j,k,e)\in \mathbb B^2\times\overline{\mathbb B}\times\mathbb B^7,\quad
+v_0=(0,0,\bot,0,0,0,0,0,0,0).\\
+V\otimes V'=
+[\neg(l[b'\ne\bot]\lor f u')]\bigl(d\oplus d',c\oplus c',b'\triangleright b,
+ l\lor l',u\lor u',f\lor f', l?i:i',f?j:j',f?k:k',e\lor e'\bigr),\\
+\bot\otimes v=v\otimes\bot=\bot,\qquad x?u:v=\begin{cases}u&x=1,\\v&x=0.\end{cases}\\
+L_m=v_0[l:=1,i:=m],\quad D_b=v_0[d:=1,b:=b],\quad
+C=v_0[c:=1,u:=1],\\ P_{ab}=v_0[f:=1,j:=a,k:=b],\quad Z_m=v_0[e:=m].\\
+A\in\overline{\{\mathfrak f_m:m\in\mathbb B\}\sqcup\{\mathfrak o_v:v\in\overline V\}},\\
+Y(\mathfrak f_a,\mathfrak f_b)=P_{ab},\quad
+Y(\mathfrak o_v,\mathfrak f_a)=C,\quad
+Y(\mathfrak f_a,\mathfrak o_v)=C\otimes v,\quad
+Y(A,B)=\bot\quad ((A,B)\notin{\rm dom}\,Y).\\
+s=(g,t,j,b,k,w,\widetilde w,x,\widetilde x,a,\widetilde a,y,\widetilde y,l,f,h,z,o),\quad
+g\in\{0,1,2,3,4,5\},\quad t,b,k\in\overline{\mathbb B},\quad j\in\mathbb B,\\
+s_S:\quad g=0,\ t=0,\ j=0,\ w=v_0,\ l=v_0,\qquad
+s_S|_{\{b,k,\widetilde w,x,\widetilde x,a,\widetilde a,y,\widetilde y,f,h,z,o\}}=\bot.\\
+\begin{gathered}
+s_{uv}=\mu_m(s_u,s_v),\quad \lambda=[g_u=0],\quad\kappa=[t_u=1],\\
+g=\min(5,1+g_u),\quad t=[\lambda\land g_v=0]1,\quad j=\kappa[g_v=0],
+\end{gathered}\\
+ b=[\kappa]t_v,\quad k=t_u,\quad
+ w=\begin{cases}L_m\otimes w_v&b_u\ne\bot,\\D_{k_v}\otimes\widetilde w_u&b_u=\bot,\ k_v\ne\bot,\\
+ \bot&b_u=k_v=\bot,\end{cases}\quad \widetilde w=[\lambda]w_v,\\
+ x=[\kappa]w_v,\quad\widetilde x=[\lambda]x_v,\quad
+ a=\begin{cases}\mathfrak f_m&j_u=1,\\\mathfrak o_{\widetilde x_u}&j_u=0,\ g_u=1,\\
+ \bot&j_u=0,\ g_u\ne1,\end{cases}
+ \quad\widetilde a=[\lambda]a_v,\\
+ y=Y(\widetilde a_u,a_v),\quad\widetilde y=[\lambda]y_v,\quad
+ l=\widetilde y_u\otimes l_v,\quad f=[\kappa\land g_v\ne0]l_v,\quad h=f_u,\\
+ z=\begin{cases}Z_m&g=3,\\h_u\otimes z_v&g=4,\\\bot&g\notin\{3,4\},\end{cases}
+ \qquad o=\widetilde x_u\otimes z_v .\\
+m(x)=[x=a],\quad M_a(t)=o(t;m),\quad M(t)=o(t;0),\quad
+H(t)=[M(t)\ne\bot]\,[d=c]\,[l=0].\\
+\mathcal A(t,a)=
+[M_a(t)\ne\bot]\begin{cases}i&d=c,\ l=1,\\
+e&d=c,\ l=0,\\
+j&d\ne c,\ f=1,\ b=0,\\
+k&d\ne c,\ f=1,\ b=1,\\
+e&d\ne c,\ f=0,\\
+0&d\ne c,\ f=1,\ b=\bot .
+\end{cases}
+\end{gather}

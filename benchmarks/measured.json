@@ -1,0 +1,734 @@
+{
+  "Python": "3.12.14",
+  "platform": "x86_64",
+  "RSS_KiB_process_peak": 11648,
+  "profiles": [
+    {
+      "program": [
+        [
+          1
+        ],
+        []
+      ],
+      "input": [
+        1,
+        0,
+        1
+      ],
+      "initialization_seconds": 2.4105000193230808e-05,
+      "elapsed_seconds": 0.0005220839998401061,
+      "CPU_seconds": 0.0005162350000000038,
+      "samples": [
+        {
+          "k": 0,
+          "step": 0,
+          "word": [
+            1,
+            0,
+            1
+          ],
+          "expanded_nodes": 289,
+          "height": 14,
+          "identity_DAG_nodes": 48
+        },
+        {
+          "k": 4,
+          "step": 1,
+          "word": [
+            0,
+            1,
+            1
+          ],
+          "expanded_nodes": 635,
+          "height": 16,
+          "identity_DAG_nodes": 58
+        },
+        {
+          "k": 6,
+          "step": 2,
+          "word": [
+            1,
+            1
+          ],
+          "expanded_nodes": 643,
+          "height": 16,
+          "identity_DAG_nodes": 68
+        }
+      ]
+    },
+    {
+      "program": [
+        [
+          1
+        ]
+      ],
+      "input": [
+        1
+      ],
+      "initialization_seconds": 6.039999789209105e-06,
+      "elapsed_seconds": 0.07915888099978474,
+      "CPU_seconds": 0.07912079300000001,
+      "samples": [
+        {
+          "k": 0,
+          "step": 0,
+          "word": [
+            1
+          ],
+          "expanded_nodes": 179,
+          "height": 14,
+          "identity_DAG_nodes": 30
+        },
+        {
+          "k": 4,
+          "step": 1,
+          "word": [
+            1
+          ],
+          "expanded_nodes": 391,
+          "height": 16,
+          "identity_DAG_nodes": 40
+        },
+        {
+          "k": 8,
+          "step": 2,
+          "word": [
+            1
+          ],
+          "expanded_nodes": 683,
+          "height": 18,
+          "identity_DAG_nodes": 54
+        },
+        {
+          "k": 11,
+          "step": 3,
+          "word": [
+            1
+          ],
+          "expanded_nodes": 855,
+          "height": 19,
+          "identity_DAG_nodes": 67
+        },
+        {
+          "k": 15,
+          "step": 4,
+          "word": [
+            1
+          ],
+          "expanded_nodes": 1227,
+          "height": 21,
+          "identity_DAG_nodes": 81
+        },
+        {
+          "k": 18,
+          "step": 5,
+          "word": [
+            1
+          ],
+          "expanded_nodes": 1439,
+          "height": 22,
+          "identity_DAG_nodes": 94
+        },
+        {
+          "k": 21,
+          "step": 6,
+          "word": [
+            1
+          ],
+          "expanded_nodes": 1651,
+          "height": 23,
+          "identity_DAG_nodes": 107
+        },
+        {
+          "k": 25,
+          "step": 7,
+          "word": [
+            1
+          ],
+          "expanded_nodes": 2103,
+          "height": 25,
+          "identity_DAG_nodes": 121
+        },
+        {
+          "k": 28,
+          "step": 8,
+          "word": [
+            1
+          ],
+          "expanded_nodes": 2355,
+          "height": 26,
+          "identity_DAG_nodes": 134
+        },
+        {
+          "k": 31,
+          "step": 9,
+          "word": [
+            1
+          ],
+          "expanded_nodes": 2607,
+          "height": 27,
+          "identity_DAG_nodes": 147
+        },
+        {
+          "k": 34,
+          "step": 10,
+          "word": [
+            1
+          ],
+          "expanded_nodes": 2859,
+          "height": 28,
+          "identity_DAG_nodes": 160
+        },
+        {
+          "k": 38,
+          "step": 11,
+          "word": [
+            1
+          ],
+          "expanded_nodes": 3391,
+          "height": 30,
+          "identity_DAG_nodes": 174
+        },
+        {
+          "k": 41,
+          "step": 12,
+          "word": [
+            1
+          ],
+          "expanded_nodes": 3683,
+          "height": 31,
+          "identity_DAG_nodes": 187
+        },
+        {
+          "k": 44,
+          "step": 13,
+          "word": [
+            1
+          ],
+          "expanded_nodes": 3975,
+          "height": 32,
+          "identity_DAG_nodes": 200
+        },
+        {
+          "k": 47,
+          "step": 14,
+          "word": [
+            1
+          ],
+          "expanded_nodes": 4267,
+          "height": 33,
+          "identity_DAG_nodes": 213
+        },
+        {
+          "k": 50,
+          "step": 15,
+          "word": [
+            1
+          ],
+          "expanded_nodes": 4559,
+          "height": 34,
+          "identity_DAG_nodes": 226
+        },
+        {
+          "k": 54,
+          "step": 16,
+          "word": [
+            1
+          ],
+          "expanded_nodes": 5171,
+          "height": 36,
+          "identity_DAG_nodes": 240
+        },
+        {
+          "k": 57,
+          "step": 17,
+          "word": [
+            1
+          ],
+          "expanded_nodes": 5503,
+          "height": 37,
+          "identity_DAG_nodes": 253
+        },
+        {
+          "k": 60,
+          "step": 18,
+          "word": [
+            1
+          ],
+          "expanded_nodes": 5835,
+          "height": 38,
+          "identity_DAG_nodes": 266
+        },
+        {
+          "k": 63,
+          "step": 19,
+          "word": [
+            1
+          ],
+          "expanded_nodes": 6167,
+          "height": 39,
+          "identity_DAG_nodes": 279
+        },
+        {
+          "k": 66,
+          "step": 20,
+          "word": [
+            1
+          ],
+          "expanded_nodes": 6499,
+          "height": 40,
+          "identity_DAG_nodes": 292
+        },
+        {
+          "k": 69,
+          "step": 21,
+          "word": [
+            1
+          ],
+          "expanded_nodes": 6831,
+          "height": 41,
+          "identity_DAG_nodes": 305
+        },
+        {
+          "k": 73,
+          "step": 22,
+          "word": [
+            1
+          ],
+          "expanded_nodes": 7523,
+          "height": 43,
+          "identity_DAG_nodes": 319
+        },
+        {
+          "k": 76,
+          "step": 23,
+          "word": [
+            1
+          ],
+          "expanded_nodes": 7895,
+          "height": 44,
+          "identity_DAG_nodes": 332
+        },
+        {
+          "k": 79,
+          "step": 24,
+          "word": [
+            1
+          ],
+          "expanded_nodes": 8267,
+          "height": 45,
+          "identity_DAG_nodes": 345
+        },
+        {
+          "k": 82,
+          "step": 25,
+          "word": [
+            1
+          ],
+          "expanded_nodes": 8639,
+          "height": 46,
+          "identity_DAG_nodes": 358
+        },
+        {
+          "k": 85,
+          "step": 26,
+          "word": [
+            1
+          ],
+          "expanded_nodes": 9011,
+          "height": 47,
+          "identity_DAG_nodes": 371
+        },
+        {
+          "k": 88,
+          "step": 27,
+          "word": [
+            1
+          ],
+          "expanded_nodes": 9383,
+          "height": 48,
+          "identity_DAG_nodes": 384
+        },
+        {
+          "k": 91,
+          "step": 28,
+          "word": [
+            1
+          ],
+          "expanded_nodes": 9755,
+          "height": 49,
+          "identity_DAG_nodes": 397
+        },
+        {
+          "k": 95,
+          "step": 29,
+          "word": [
+            1
+          ],
+          "expanded_nodes": 10527,
+          "height": 51,
+          "identity_DAG_nodes": 411
+        },
+        {
+          "k": 98,
+          "step": 30,
+          "word": [
+            1
+          ],
+          "expanded_nodes": 10939,
+          "height": 52,
+          "identity_DAG_nodes": 424
+        },
+        {
+          "k": 101,
+          "step": 31,
+          "word": [
+            1
+          ],
+          "expanded_nodes": 11351,
+          "height": 53,
+          "identity_DAG_nodes": 437
+        },
+        {
+          "k": 104,
+          "step": 32,
+          "word": [
+            1
+          ],
+          "expanded_nodes": 11763,
+          "height": 54,
+          "identity_DAG_nodes": 450
+        },
+        {
+          "k": 107,
+          "step": 33,
+          "word": [
+            1
+          ],
+          "expanded_nodes": 12175,
+          "height": 55,
+          "identity_DAG_nodes": 463
+        },
+        {
+          "k": 110,
+          "step": 34,
+          "word": [
+            1
+          ],
+          "expanded_nodes": 12587,
+          "height": 56,
+          "identity_DAG_nodes": 476
+        },
+        {
+          "k": 113,
+          "step": 35,
+          "word": [
+            1
+          ],
+          "expanded_nodes": 12999,
+          "height": 57,
+          "identity_DAG_nodes": 489
+        },
+        {
+          "k": 116,
+          "step": 36,
+          "word": [
+            1
+          ],
+          "expanded_nodes": 13411,
+          "height": 58,
+          "identity_DAG_nodes": 502
+        },
+        {
+          "k": 120,
+          "step": 37,
+          "word": [
+            1
+          ],
+          "expanded_nodes": 14263,
+          "height": 60,
+          "identity_DAG_nodes": 516
+        },
+        {
+          "k": 123,
+          "step": 38,
+          "word": [
+            1
+          ],
+          "expanded_nodes": 14715,
+          "height": 61,
+          "identity_DAG_nodes": 529
+        },
+        {
+          "k": 126,
+          "step": 39,
+          "word": [
+            1
+          ],
+          "expanded_nodes": 15167,
+          "height": 62,
+          "identity_DAG_nodes": 542
+        },
+        {
+          "k": 129,
+          "step": 40,
+          "word": [
+            1
+          ],
+          "expanded_nodes": 15619,
+          "height": 63,
+          "identity_DAG_nodes": 555
+        },
+        {
+          "k": 132,
+          "step": 41,
+          "word": [
+            1
+          ],
+          "expanded_nodes": 16071,
+          "height": 64,
+          "identity_DAG_nodes": 568
+        },
+        {
+          "k": 135,
+          "step": 42,
+          "word": [
+            1
+          ],
+          "expanded_nodes": 16523,
+          "height": 65,
+          "identity_DAG_nodes": 581
+        },
+        {
+          "k": 138,
+          "step": 43,
+          "word": [
+            1
+          ],
+          "expanded_nodes": 16975,
+          "height": 66,
+          "identity_DAG_nodes": 594
+        },
+        {
+          "k": 141,
+          "step": 44,
+          "word": [
+            1
+          ],
+          "expanded_nodes": 17427,
+          "height": 67,
+          "identity_DAG_nodes": 607
+        },
+        {
+          "k": 144,
+          "step": 45,
+          "word": [
+            1
+          ],
+          "expanded_nodes": 17879,
+          "height": 68,
+          "identity_DAG_nodes": 620
+        },
+        {
+          "k": 148,
+          "step": 46,
+          "word": [
+            1
+          ],
+          "expanded_nodes": 18811,
+          "height": 70,
+          "identity_DAG_nodes": 634
+        },
+        {
+          "k": 151,
+          "step": 47,
+          "word": [
+            1
+          ],
+          "expanded_nodes": 19303,
+          "height": 71,
+          "identity_DAG_nodes": 647
+        },
+        {
+          "k": 154,
+          "step": 48,
+          "word": [
+            1
+          ],
+          "expanded_nodes": 19795,
+          "height": 72,
+          "identity_DAG_nodes": 660
+        }
+      ]
+    },
+    {
+      "program": [
+        [],
+        [
+          1,
+          0
+        ]
+      ],
+      "input": [
+        0,
+        1,
+        0
+      ],
+      "initialization_seconds": 8.77800039233989e-06,
+      "elapsed_seconds": 0.0038458240001091326,
+      "CPU_seconds": 0.0038463589999999936,
+      "samples": [
+        {
+          "k": 0,
+          "step": 0,
+          "word": [
+            0,
+            1,
+            0
+          ],
+          "expanded_nodes": 311,
+          "height": 16,
+          "identity_DAG_nodes": 51
+        },
+        {
+          "k": 4,
+          "step": 1,
+          "word": [
+            1,
+            0
+          ],
+          "expanded_nodes": 675,
+          "height": 18,
+          "identity_DAG_nodes": 62
+        },
+        {
+          "k": 6,
+          "step": 2,
+          "word": [
+            0,
+            1,
+            0
+          ],
+          "expanded_nodes": 699,
+          "height": 18,
+          "identity_DAG_nodes": 71
+        },
+        {
+          "k": 10,
+          "step": 3,
+          "word": [
+            1,
+            0
+          ],
+          "expanded_nodes": 1189,
+          "height": 20,
+          "identity_DAG_nodes": 85
+        },
+        {
+          "k": 12,
+          "step": 4,
+          "word": [
+            0,
+            1,
+            0
+          ],
+          "expanded_nodes": 1213,
+          "height": 20,
+          "identity_DAG_nodes": 95
+        },
+        {
+          "k": 15,
+          "step": 5,
+          "word": [
+            1,
+            0
+          ],
+          "expanded_nodes": 1493,
+          "height": 21,
+          "identity_DAG_nodes": 108
+        },
+        {
+          "k": 17,
+          "step": 6,
+          "word": [
+            0,
+            1,
+            0
+          ],
+          "expanded_nodes": 1517,
+          "height": 21,
+          "identity_DAG_nodes": 118
+        },
+        {
+          "k": 21,
+          "step": 7,
+          "word": [
+            1,
+            0
+          ],
+          "expanded_nodes": 2147,
+          "height": 23,
+          "identity_DAG_nodes": 132
+        },
+        {
+          "k": 23,
+          "step": 8,
+          "word": [
+            0,
+            1,
+            0
+          ],
+          "expanded_nodes": 2171,
+          "height": 23,
+          "identity_DAG_nodes": 142
+        },
+        {
+          "k": 26,
+          "step": 9,
+          "word": [
+            1,
+            0
+          ],
+          "expanded_nodes": 2521,
+          "height": 24,
+          "identity_DAG_nodes": 155
+        },
+        {
+          "k": 28,
+          "step": 10,
+          "word": [
+            0,
+            1,
+            0
+          ],
+          "expanded_nodes": 2545,
+          "height": 24,
+          "identity_DAG_nodes": 165
+        },
+        {
+          "k": 31,
+          "step": 11,
+          "word": [
+            1,
+            0
+          ],
+          "expanded_nodes": 2895,
+          "height": 25,
+          "identity_DAG_nodes": 178
+        },
+        {
+          "k": 33,
+          "step": 12,
+          "word": [
+            0,
+            1,
+            0
+          ],
+          "expanded_nodes": 2919,
+          "height": 25,
+          "identity_DAG_nodes": 188
+        }
+      ]
+    }
+  ]
+}

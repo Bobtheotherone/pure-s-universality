@@ -1,0 +1,190 @@
+{
+  "Universal_Pure_S.pdf": {
+    "sha256": "df01550e0ba5506f25b8bf52a781aa289dd1a5de295a3346cab4d0498db5c2eb",
+    "pages": 24,
+    "word_bounds": [
+      {
+        "page": 1,
+        "leftmost_word_pt": 83.8,
+        "rightmost_word_pt": 529.5
+      },
+      {
+        "page": 2,
+        "leftmost_word_pt": 84.0,
+        "rightmost_word_pt": 529.5
+      },
+      {
+        "page": 3,
+        "leftmost_word_pt": 84.2,
+        "rightmost_word_pt": 529.5
+      },
+      {
+        "page": 4,
+        "leftmost_word_pt": 83.7,
+        "rightmost_word_pt": 529.5
+      },
+      {
+        "page": 5,
+        "leftmost_word_pt": 83.7,
+        "rightmost_word_pt": 529.5
+      },
+      {
+        "page": 6,
+        "leftmost_word_pt": 83.3,
+        "rightmost_word_pt": 529.5
+      },
+      {
+        "page": 7,
+        "leftmost_word_pt": 84.2,
+        "rightmost_word_pt": 529.5
+      },
+      {
+        "page": 8,
+        "leftmost_word_pt": 83.6,
+        "rightmost_word_pt": 529.5
+      },
+      {
+        "page": 9,
+        "leftmost_word_pt": 82.5,
+        "rightmost_word_pt": 529.5
+      },
+      {
+        "page": 10,
+        "leftmost_word_pt": 84.2,
+        "rightmost_word_pt": 529.5
+      },
+      {
+        "page": 11,
+        "leftmost_word_pt": 83.7,
+        "rightmost_word_pt": 529.5
+      },
+      {
+        "page": 12,
+        "leftmost_word_pt": 83.7,
+        "rightmost_word_pt": 529.5
+      },
+      {
+        "page": 13,
+        "leftmost_word_pt": 83.8,
+        "rightmost_word_pt": 529.5
+      },
+      {
+        "page": 14,
+        "leftmost_word_pt": 82.9,
+        "rightmost_word_pt": 529.5
+      },
+      {
+        "page": 15,
+        "leftmost_word_pt": 84.2,
+        "rightmost_word_pt": 529.5
+      },
+      {
+        "page": 16,
+        "leftmost_word_pt": 84.1,
+        "rightmost_word_pt": 529.5
+      },
+      {
+        "page": 17,
+        "leftmost_word_pt": 84.2,
+        "rightmost_word_pt": 529.5
+      },
+      {
+        "page": 18,
+        "leftmost_word_pt": 84.2,
+        "rightmost_word_pt": 529.5
+      },
+      {
+        "page": 19,
+        "leftmost_word_pt": 84.0,
+        "rightmost_word_pt": 529.5
+      },
+      {
+        "page": 20,
+        "leftmost_word_pt": 84.6,
+        "rightmost_word_pt": 527.4
+      },
+      {
+        "page": 21,
+        "leftmost_word_pt": 164.0,
+        "rightmost_word_pt": 448.0
+      },
+      {
+        "page": 22,
+        "leftmost_word_pt": 164.0,
+        "rightmost_word_pt": 448.0
+      },
+      {
+        "page": 23,
+        "leftmost_word_pt": 84.2,
+        "rightmost_word_pt": 529.5
+      },
+      {
+        "page": 24,
+        "leftmost_word_pt": 84.6,
+        "rightmost_word_pt": 526.5
+      }
+    ],
+    "typesetting_warnings": []
+  },
+  "Symbolic_Complete_Proof.pdf": {
+    "sha256": "1752111621a1298bdabfd63d6e34e889a367018096b40c17c5f80bc58e2b51ec",
+    "pages": 10,
+    "word_bounds": [
+      {
+        "page": 1,
+        "leftmost_word_pt": 88.6,
+        "rightmost_word_pt": 546.6
+      },
+      {
+        "page": 2,
+        "leftmost_word_pt": 82.3,
+        "rightmost_word_pt": 546.6
+      },
+      {
+        "page": 3,
+        "leftmost_word_pt": 73.5,
+        "rightmost_word_pt": 546.6
+      },
+      {
+        "page": 4,
+        "leftmost_word_pt": 87.7,
+        "rightmost_word_pt": 546.6
+      },
+      {
+        "page": 5,
+        "leftmost_word_pt": 112.8,
+        "rightmost_word_pt": 546.6
+      },
+      {
+        "page": 6,
+        "leftmost_word_pt": 164.0,
+        "rightmost_word_pt": 448.0
+      },
+      {
+        "page": 7,
+        "leftmost_word_pt": 164.0,
+        "rightmost_word_pt": 448.0
+      },
+      {
+        "page": 8,
+        "leftmost_word_pt": 140.5,
+        "rightmost_word_pt": 471.5
+      },
+      {
+        "page": 9,
+        "leftmost_word_pt": 90.8,
+        "rightmost_word_pt": 546.6
+      },
+      {
+        "page": 10,
+        "leftmost_word_pt": 83.5,
+        "rightmost_word_pt": 546.6
+      }
+    ],
+    "typesetting_warnings": [],
+    "consecutive_equation_labels": [
+      1,
+      159
+    ]
+  }
+}

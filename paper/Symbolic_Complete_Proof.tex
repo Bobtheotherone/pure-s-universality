@@ -1,0 +1,245 @@
+\documentclass[10pt,letterpaper]{article}
+\usepackage[letterpaper,textwidth=6.65in,textheight=8.9in,centering]{geometry}
+\usepackage{amsmath,amssymb,mathtools,longtable,booktabs}
+\usepackage[final]{microtype}
+\usepackage[hidelinks]{hyperref}
+\input{Authors}
+\hypersetup{pdftitle={Selected pure S reduction, symbolic derivation},pdfauthor={\PaperAuthors}}
+\allowdisplaybreaks[3]
+\setlength{\emergencystretch}{2em}
+\newcommand{\T}{\mathcal T}
+\newcommand{\N}{\mathbb N}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\bit}{\{0,1\}}
+\newcommand{\pair}[2]{\langle #1,#2\rangle}
+\newcommand{\R}{\longrightarrow_{S}}
+\newcommand{\wt}{\mathsf W}
+\newcommand{\ra}{\mathrel{\mapsto}}
+\newcommand{\dd}{\mathsf d}
+\newcommand{\cc}{\mathsf c}
+\newcommand{\st}{\star}
+\newcommand{\botv}{\perp}
+\pagestyle{plain}
+\begin{document}
+\begin{center}
+  \large\PaperAuthors
+\end{center}
+\begin{gather}
+\T=\mu T.\{S\}\sqcup(T\times T),\quad  (xy)z=xyz,\quad  A=\{L,R\}^{*}.\\
+t|_\eps=t,\quad (uv)|_{La}=u|_a,\quad (uv)|_{Ra}=v|_a.\\
+t[\eps:u]=u,\quad (vw)[La:u]=(v[a:u])w,\quad (vw)[Ra:u]=v(w[a:u]).\\
+t\xrightarrow{a}t'\iff \exists x,y,z:\ t|_a=Sxyz,\ t'=t[a:(xz)(yz)],\quad
+\R=\bigcup_{a\in A}\xrightarrow{a}.\\
+\pair{x}{y}=Sxy,\quad \operatorname{enc}(\mathsf{nil})=S,\quad \operatorname{enc}(u::\ell)=\pair u{\operatorname{enc}(\ell)},\quad
+G(t)=\pair S t. \label{sym:5}\\
+B_0=S,\quad B_{j+1}=SB_j,\quad J_j=SSB_j,\quad K(t)=SSSt.\notag\\
+\wt(\eps)=S,\quad \wt(bw)=J_b\wt(w),\quad
+ J_bx\R(Sx)(B_bx),\quad
+ K(v)\R(Sv)(Sv). \label{sym:6}\\
+w_{\mathsf{nil}}(v)=\wt(v),\quad
+ w_{(b,g)::h}(v)=(S w_h(v))(B_b g). \notag\\
+w_h(bv)\R w_{h\cdot(b,\wt(v))}(v),\quad
+ a_{\mathsf{nil}}=\eps,\quad a_{(b,g)::h}=LRa_h. \label{sym:7}\\
+Y(v)=\pair{K(S)}{K(G(\wt(v)))},\quad
+P=(v_i)_{i<p},\quad p>0.\notag\\
+F=G\bigl(\operatorname{enc}((Y(v_i))_{i<p})\bigr),\quad  A_F=SF,\quad X_0=SA_FA_F,\quad X_{j+1}=A_FX_j.\label{sym:8}\\
+X_0X_j=(SA_FA_F)X_j\R(A_FX_j)(A_FX_j)=X_{j+1}X_{j+1}, \label{sym:9}\\
+X_{r+1}X_j=(SFX_r)X_j\R (FX_j)(X_rX_j). \label{sym:10}\\
+E(P,w)=\pair{G(\wt(w))}{X_0X_0}. \label{sym:11}
+\end{gather}
+\begin{gather}
+\ell(S)=0,\quad \ell(ab)=1+\ell(a),\quad
+\rho_0=LR,\quad \rho_1=R .\\
+\label{wordgrammar}\mathcal W::=S\mid J_b\mathcal W\mid(S\mathcal W)(B_b t),\quad b\in\bit,\ t\in\T .\\
+\tau(S)=\eps,\quad \tau(J_bv)= (0,b)\tau(v),\quad
+\tau((Sv)(B_bg))=(1,b)\tau(v).\\
+U(t)\iff\exists g:t=K(g),\quad O(t,x)\iff\exists g:t=(Sx)g, \quad
+Y=\pair{u_0}{u_1}.\\
+\lambda(Y)=
+\begin{cases}
+(0,\eps)& U(u_0)\land U(u_1),\\
+(1,\eps)&(\exists x:O(u_0,x))\land U(u_1),\\
+(1,\tau(w))&U(u_0)\land O(u_1,G(w))\land w\in\mathcal W .
+\end{cases}\\
+\mathcal L ::= S\mid\pair{Y}{\mathcal L},\quad
+\mathcal F ::= f\ (\ell(f)=3)\mid (G(l)g)\mathcal F\quad
+(l\in\mathcal L,\ l\ne S,\ g\in\T).\\
+t=\pair{G(w_0)}{\mathcal F},\quad
+(Y_j)_{j<s}=\bigoplus_{f\in\mathcal F}^{\prec}(Y\in l_f)^\prec,\quad
+(\eta_j,h_j)=\lambda(Y_j),\quad h=\tau(w_0)\prod_{j<s}h_j .\\
+\label{lastgrammar}\exists c,d:\ (\eta_j)_{j<s}=1^c0^{s-c},\quad
+\pi_1(h)=1^d0^{|h|-d},\quad
+z=\pi_2(h[d:]),\quad \gamma=\pi_2(h[d-1])\ (d>0).\\
+\begin{gathered}
+\mathcal V(t)\iff (t=\pair{G(w_0)}{f})\land w_0\in\mathcal W\land f\in\mathcal F\land (\eta_j)_{j<s}\in1^*0^*\land\pi_1(h)\in1^*0^*,\\
+\chi=c\bmod2,\quad\psi=d\bmod2 .
+\end{gathered}
+\end{gather}
+\begin{gather}
+a(t)=
+\begin{cases}
+a_{\min\{u:\pi_1(h_u)=0\}}&\psi=\chi,\ z\ne\eps,\\
+a_{Y_c}\rho_\gamma&\psi\ne\chi,\ c<s,\ d>0,\\
+a_f&(\psi\ne\chi,\ c=s)\lor(\psi=\chi,\ z=\eps).
+\end{cases}\\
+\mathcal R(t)=\{a:\exists x,y,z:t|_a=Sxyz\},\quad
+a^*(t)=\begin{cases}a(t)&\mathcal V(t),\ a(t)\in\mathcal R(t),\\
+\min_{\mathrm{pre}}\mathcal R(t)&\mathcal R(t)\ne\varnothing \ \land\
+ \neg(\mathcal V(t)\land a(t)\in\mathcal R(t)),\\
+\botv&\mathcal R(t)=\varnothing ,
+\end{cases}\\
+\sigma(t)=t[a^*(t):(xz)(yz)]\quad(t|_{a^*}=Sxyz),\quad
+\sigma(t)=t\quad(a^*=\botv).\\
+\mathcal G_P=\{\sigma^k E(P,w): k\in\N,\ w\in\mathbb B^*\},\qquad \mathbb B=\{0,1\}.\\
+I_n(t;i,z)\iff t\in\mathcal G_P\land\mathcal V(t)\land d=c=n\land i=n\bmod p\land V(t)=z
+ \land(\forall j<s:Y(v_{j\bmod p})\R^*Y_j). \notag
+\end{gather}
+\begin{gather}
+I_0(E(P,w);0,w),\qquad
+ I_n(t;i,bz)\xRightarrow{(\getrefnumber{sym:7})} (d,c,V,\gamma)=(n+1,n,z,b).\\
+j_{\rm a}=\begin{cases}0&c<s,\\1&c=s,\ f=X_{r+1}X_j,\\2&c=s,\ f=X_0X_j,\end{cases}\quad
+(d,c,V,\gamma)\xRightarrow{(\getrefnumber{sym:9}),(\getrefnumber{sym:10})}(n+1,n,z,b).\\
+Y_c=Y(v_i),\quad K(S)\R(SS)(SS),\quad
+K(G(\wt(v_i)))\R(SG(\wt(v_i)))(SG(\wt(v_i))).\\
+V'=zv_i^b,\quad v^0=\eps,\ v^1=v,\quad
+I_n(t;i,bz)\Rightarrow I_{n+1}(\sigma^{2+j_{\rm a}}t;(i+1)\bmod p,zv_i^b).\\
+0<j<2+j_{\rm a}\ \Rightarrow\ (d-c)(\sigma^jt)=1,\quad
+I_n(t;i,\eps)\Rightarrow\forall j\in\N:\ d(\sigma^jt)=c(\sigma^jt)=n,\ V(\sigma^jt)=\eps.\\
+\theta_0=0,\ \theta_{n+1}=\theta_n+2+j_{{\rm a},n},\quad
+2n\le\theta_n\le4n,\quad
+\forall n\ \forall (0,w)\mapsto^n(i,z):\
+ I_n(\sigma^{\theta_n}E(P,w);i,z).\\
+(P,w)=((1),1)\Rightarrow\forall n:\ z_n=1,\quad
+n>0\Rightarrow a_{{\partial},n}\in a_{{K},n-1} LR R\{L,R\}^{*}.
+\end{gather}
+\input{Symbolic_Automaton}
+\begin{gather}
+R\ (J_bW)\ \leftrightarrow\ \uparrow_{\ell=3},\quad
+LR\ ((SW)(B_bG))\ \leftrightarrow\ \uparrow_{\ell=1}\uparrow,\quad
+R\ (G(W))\ \leftrightarrow\ \uparrow_{\ell=2}.\\
+a_{G_0}=LR,\quad a_Y=LR,\quad
+a_G=LR,\quad a_{j+1}/a_j=R,\quad a_{\mathcal L}=LLR,\quad
+\#\mu\le C_0(1+|t|).
+\end{gather}
+\begin{gather}
+\beta(B_j)=j,\quad \Sigma=\{i\in\N:i<m\},\quad Q_0=\{0,\dots,l-1\},\quad
+ T[q,a]=(q',v).\\
+M_{q,a}=K\!\left(\pair{B_{q'}}{G(\wt(v))}\right),\quad
+h=\lceil\log_2(lm)\rceil,\quad  j=\min(qm+a, lm-1).\\
+M^0_j=\pair{SS}{M_{\lfloor\min(j,lm-1)/m\rfloor,\,\min(j,lm-1)\bmod m}},\quad
+M^{i+1}_j=\pair S{\pair{M^i_{2j}}{M^i_{2j+1}}},\quad
+F_T=G\bigl(\operatorname{enc}(M^h_0::\mathsf{nil})\bigr).\\
+q(t)=\begin{cases}q_0&c=0,\\ \beta(Y_{c-1}|_{a_{O}LR\rho_0})&c>0,\end{cases}\quad
+a_K=a_{M}\,\phi(\mathrm{bin}_h(q(t)m+\gamma)).\\
+\phi(\eps)=R,\quad
+\phi(0v)=RLR\phi(v),\quad
+\phi(1v)=RR\phi(v).\\
+(q,aw)\longmapsto(q',wv)\iff T[q,a]=(q',v),\quad
+(q,aw)\xRightarrow[\R]{2+j_{\rm a}}(q',wv).\\
+\Sigma_r=\{a_i,\delta_i:0\le i<r\},\quad
+R(\mathbf n)=\prod_{0\le i<r}a_i^{n_i}\delta_i .
+\end{gather}
+\begin{gather}
+C=(q,f),\quad f\in\bit,\quad
+K_q(x,f)=\begin{cases}(a_i\delta_i,f)&U_q=(1,i,l),\ x=\delta_i,\\
+(\eps,1)&U_q=(2,i,l_0,l_1),\ x=a_i,\ f=0,\\(x,f)&\ast,
+\end{cases}\\
+\begin{gathered}
+g_q(f)=\begin{cases}l&U_q=(1,i,l)\lor U_q=(3,l),\\
+l_f&U_q=(2,i,l_0,l_1),\end{cases}\\
+T[(q,f),x]=
+\begin{cases}((g_q(f'),0),v)&x=\delta_{r-1},\\((q,f'),v)&x\ne\delta_{r-1},\end{cases}
+\quad (v,f')=K_q(x,f).
+\end{gathered}\\
+x_0\cdots x_{d-1}=R(\mathbf n),\
+(v_j,f_{j+1})=K_q(x_j,f_j),\ f_0=0,\quad
+W_j=\Big(\prod_{j\le t<d}x_t\Big)\Big(\prod_{0\le t<j}v_t\Big).\\
+W_0=R(\mathbf n),\
+W_j=x_jz,\ W_{j+1}=zv_j,\quad
+\prod_{j<d}v_j=R(\mathbf n'),\
+(q',\mathbf n')=[\![ U_q]\!](q,\mathbf n).\\
+\#\{j:x_j=\delta_{r-1}\}=1,\quad
+(\forall j<d:\delta_{r-1}\in W_j),\quad
+f_d=[n_i>0]\quad(U_q=(2,i,l_0,l_1)).\\
+\operatorname{code}_{\N}(\mathsf{nil})=0,\quad [a\mid b]_{\N}=2^a(2b+1),\quad
+\mathrm{split}(k)=\left(\nu_2(k),\left\lfloor k/2^{1+\nu_2(k)}\right\rfloor\right)\quad(k>0).\\
+\mathrm{hd}(0)=\mathrm{tl}(0)=0,\quad
+\mathrm{nth}(s,0)=\mathrm{hd}(s),\quad
+\mathrm{nth}(s,j+1)=\mathrm{nth}(\mathrm{tl}(s),j).\\
+\mathcal I(0)=\mathbf H,\quad
+ \mathcal I([0\mid[j\mid l]])=\mathbf I(j,l),\quad
+ \mathcal I([1\mid[j\mid[l_0\mid l_1]]])=\mathbf B(j,l_0,l_1).\\
+ \mathrm{set}(0,u,s)=[u\mid\mathrm{tl}(s)],\qquad
+ \mathrm{set}(j+1,u,s)=[\mathrm{hd}(s)\mid\mathrm{set}(j,u,\mathrm{tl}(s))].\\
+ e\in\N,\quad (p,s)=(0,[x\mid0]),\quad
+ \frac{\mathrm{tl}^{p}(e)>0\quad \mathcal I(\mathrm{nth}(e,p))=\mathbf I(j,l)}
+ {(p,s)\mapsto(l,\mathrm{set}(j,\mathrm{nth}(s,j)+1,s))}.\\
+\frac{\mathrm{tl}^{p}(e)>0\quad
+ \mathcal I(\mathrm{nth}(e,p))=\mathbf B(j,l_0,l_1)\quad n=\mathrm{nth}(s,j)}
+ {(p,s)\mapsto(l_{[n>0]},\mathrm{set}(j,n\mathbin{\dot-}1,s))},
+\quad
+\frac{\mathrm{tl}^{p}(e)>0\quad\mathrm{nth}(e,p)=0}{(p,s)\Downarrow\mathrm{hd}(s)} .\\
+(s_L,c,s_R)\xrightarrow{(c',R)}(B s_L+c',d,\lfloor s_R/B\rfloor),\
+ d=\begin{cases}s_R\bmod B&s_R>0,\\ b_\ast&s_R=0,\end{cases}
+ \quad 1\le c',d,b_\ast<B.\\
+(s_L,c,s_R)\xrightarrow{(c',L)}(\lfloor s_L/B\rfloor,d,Bs_R+c'),\
+ d=\begin{cases}s_L\bmod B&s_L>0,\\ b_\ast&s_L=0.\end{cases}\\
+\begin{gathered}
+P_0(z)=0,\quad P_{n+1}(z)=P_n(z)+z,\quad
+(q_0,r_0)=(0,0),\\
+(q_{n+1},r_{n+1})=(q_n+[r_n+1=B],(r_n+1)\bmod B).
+\end{gathered}\\
+ Br+c'=P_B(r)+c',\quad n=Bq_n+r_n,\quad 0\le r_n<B,\quad
+ \{\varphi_e:e\in\N\}=\mathrm{PartRec}(\N,\N).\\
+r=29,\quad |U|=446,\quad \nu(e,x)=(e,x,e,x,0^{25}),\quad
+ E_U(e,x)=\pair{G(\wt(R(\nu(e,x))))}{X_0(F_T)X_0(F_T)}.\\
+H_U(t)=[\mathcal V_T(t)] [d\equiv c\bmod2][q(t)=q_H],\qquad
+D_U(t)=\begin{cases}|V(t)|_{a_4}&H_U(t)=1,\\\botv&H_U(t)=0.\end{cases}\\
+\forall e,x,y:\quad U(e,x)\downarrow=y\iff
+ \exists k:H_U(\sigma_T^k E_U(e,x))=1\ \land\ D_U(\sigma_T^k E_U(e,x))=y . \label{sym:60}
+\end{gather}
+\begin{gather}
+\mathcal E_r=\mu Z.\{S,x_1,\ldots,x_r\}\sqcup Z^2,\quad
+d:Q^r\to\mathcal E_r^r,\quad B\subseteq Q^r.\\
+h(e_\T(\mathbf t))=e_Q(h^r(\mathbf t)),\quad
+ h(x_i)=h(t_i),\quad
+h((uv)_\T)=\mu(h(u_\T),h(v_\T)).\\
+a_0=h^r(\mathbf t_0),\quad
+a_{n+1}=d(a_n)_Q(a_n)=h^r(d(a_n)_\T(\mathbf t_n)).\\
+a_i=a_j,\ i<j\Rightarrow\forall k:a_{i+k}=a_{j+k},\quad
+ n=\min\{j:a_j\in B\}\Rightarrow a_i\ne a_j\quad(0\le i<j\le n).\\
+(\exists n:a_n\in B)\Longleftrightarrow\bigvee_{0\le k<|Q|^r}(a_k\in B). \label{sym:65}
+\end{gather}
+\begin{gather}
+\Delta\subseteq D\times\Gamma\times D\times\Gamma^*,\quad
+(\hat a,s)=(a,\delta^*(s_0,\mathrm{rev}(w)))\quad\textstyle (aw\in\Gamma^*),\\
+Z_0=\mathfrak N_B,\qquad
+Z_{j+1}=Z_j\cup\{p\xrightarrow{a}v:(p,a,q,u)\in\Delta,\ q\xrightarrow{u}_{Z_j}v\},\\
+Z_\infty=Z_{m},\quad m\le|\Gamma||V(\mathfrak N_B)|^2,\quad
+(p,w)\in{\rm pre}^*(B)\iff
+ \exists f\in F_B:\ p\xrightarrow{w}_{Z_\infty} f .\\
+ q\xrightarrow{u}_{Z_j}v\ \land v\xrightarrow{z}_{Z_\infty}f
+ \ \Rightarrow\ p\xrightarrow{az}_{Z_\infty}f,\qquad
+ \{j+1\}\succ_{\rm mul}\{\operatorname{rank}(e):e\in (q\xrightarrow{u}_{Z_j}v)\}.\\
+\begin{gathered}
+L(S)=1,\ L(uv)=L(u)+L(v),\
+h(S)=0,\ h(uv)=1+\max(h(u),h(v)),\\\
+t\xrightarrow{a}t'\Rightarrow L(t')=L(t)+L(z)-1.
+\end{gathered}\\
+L_k\le 2^kL_0,\quad h_k\le h_0+k,\quad
+D_k\le D_0+\sum_{j<k}(3+h_0+j).
+\end{gather}
+\[
+ U_q=(0)\Rightarrow(q,\mathbf n)\Downarrow n_4,\quad
+ U_q=(1,i,l)\Rightarrow(q,\mathbf n)\mapsto(l,\mathbf n+\mathbf e_i),\quad
+ U_q=(3,l)\Rightarrow(q,\mathbf n)\mapsto(l,\mathbf n).
+\]
+\[
+ U_q=(2,i,l_0,l_1)\Rightarrow (q,\mathbf n)\mapsto
+ \left(l_{[n_i>0]},\mathbf n-[n_i>0]\mathbf e_i\right).
+\]
+\input{Symbolic_Macro}
+\input{Interpreter_Table}
+\input{Cook_Table}
+\input{Symbolic_Numerical}
+\end{document}

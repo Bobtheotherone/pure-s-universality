@@ -1,0 +1,13 @@
+{"version": "1.2.0",
+ "packagesDir": ".lake/packages",
+ "packages":
+ [{"type": "path",
+   "scope": "",
+   "name": "cinematicCook",
+   "manifestFile": "lake-manifest.json",
+   "inherited": false,
+   "dir": "../third_party/cinematic-strawberry-compiler",
+   "configFile": "lakefile.toml"}],
+ "name": "pureSSubmission",
+ "lakeDir": ".lake",
+ "fixedToolchain": false}

@@ -1,0 +1,11 @@
+# Primary sources
+
+- The Wolfram Foundation's rules set the technical paper, contributor, originality, priority and committee requirements. [Official guidelines](https://www.combinatorprize.org/)
+- Stephen Wolfram's 2021 announcement discusses selected deterministic paths, detection on infinite evolutions, auxiliary nonuniversality and executable interfaces. [Original announcement](https://writings.stephenwolfram.com/2021/06/1920-2020-and-a-20000-prize-announcing-the-s-combinator-challenge/)
+- Matthew Cook's cyclic tag construction and Shepherdson and Sturgis's register-machine result are independent mathematical sources. [Cook](https://doi.org/10.25088/ComplexSystems.15.1.1) · [Shepherdson and Sturgis](https://doi.org/10.1145/321160.321170)
+- The proof of the auxiliary one-stack decision theorem uses the classical predecessor-automaton saturation construction. [Bouajjani, Esparza and Maler](https://doi.org/10.1007/3-540-63141-0_10)
+- Cinematic Strawberry's primary package includes the mathematical manuscript, root-restart public contracts, public type signatures, axiom census, primitive measurements, verification receipts, code and licenses. Its citation metadata identifies 14 September 2026. [Pinned release tree](https://github.com/cstrawberry/predictive-universe/tree/47edfaa400209dee85837e032dec0620915004e5/docs/paper/related/pure_s_universality) · [Author's article](https://cinematicstrawberry.com/00110000/articles/scombinator.html)
+- The historical observed manuscript, original code and bibliography are preserved at the historical main commit. [Original source](https://github.com/Bobtheotherone/pure-s-combinator-research/tree/134f4a74f6178e2360c69e30de8536f17b4f39be/mathematics/manuscripts/observed-universality-v1) · [Later replacement analysis](https://github.com/Bobtheotherone/pure-s-combinator-research/blob/76bc5024728dafbf3fe627e52e73a90c6b9ea327/mathematics/latest/2026-11-25_observed_replacement.md)
+- Anthony Langdon, *The Root Remembers* and *From Copying to Recursion*, privately shared research notes, 26 November 2026. Their filenames are `S_Combinator_Elegant_Ostensive_Proof.pdf` and `S_Combinator_Recursive_Port_Attack.pdf`.
+
+The conventional paper uses [references.bib](paper/references.bib). The third-party pin list records the exact Git blob hash of every included Lean source.

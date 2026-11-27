@@ -1,0 +1,53 @@
+\section{Natural-number output on the binary evaluator}\label{numericv2}
+Use the ordinary deterministic binary tape model: a finite table \(M\) assigns to a state and scanned bit at most one triple (write bit, head displacement in \(\{-1,0,1\}\), next state). A missing rule halts. A finite window grows by one blank on crossing either end. The initial state is zero, and the head starts at index one in \(0\,1^x0\). If \(r=(q,h,T)\) is terminal, put \(\nu(r)=|\operatorname{takeWhile}_{1}(\operatorname{drop}_{h}T)|\). This is the usual unary-output convention. Every finite binary tape table has a code \(e\): the paired lists of optional triples are numbered by the mutually inverse \texttt{machineCode} and \texttt{machineDecode} in the compiler of~\cite{filin}. Consequently this choice ranges over all deterministic Turing computations of partial numerical functions. A machine can blank the cell immediately after its output and position its head on its first unit. On the zero numeral it positions the head on a blank. These are ordinary source-machine conventions. They introduce no target-side oracle. Write \(U_T(e,x)\downarrow=y\) for reachability of a terminal row of value \(y\). Its numbering is independent of the register numbering of Theorem~\ref{output}.
+
+Let \(P_*\) be the fixed 912-phase program in the table below, \(s=(M,0,1^x)\) and \(w=C(\operatorname{pad}s)\) the tape-to-Cook encoder of Cinematic Strawberry~\cite{filin}. Padding ensures that every finite tape table meets the source-side conditions. Its correctness in both directions is included in the checked dependency closure. Let \(B\) be the certified bare boundary policy, \(h\) its fixed regular empty-queue detector, and \(t_0(w)\) its previously defined unannotated seed. Set
+\[
+ E_T(e,x)=\pair{\word(w)}{t_0(w)},\qquad
+ \sigma_T(\pair a t)=\pair a{B(t)},\qquad H_T(\pair a t)=h(t).
+\]
+On a nonmatching tree the policy fixes the tree and the guard is false. The extra copy of the seed is immutable. The constructor at its root and the right subtree are enough to recognize the guard by a finite tree automaton. All selections on a generated input start in the right subtree. For \(m(w)=3|w|_0+4|w|_1\), the exact unfolded encoder leaf count is
+\(24+48|P_*|+4\sum_{v\in P_*}m(v)+2m(w)\).
+This bound is in the compiled word length. Constructing \(w\) is effective, potentially enormous and separate from the listed contraction cost.
+
+\paragraph{\textit{Reading physical data.}}
+At a detected boundary let \(g\) be the bits of the visible cells of the right tree, in physical word order, dropping only their live/spent flags. All are spent at that boundary. Our reader uses the word length and bit pattern of the immutable copy; it receives no prior snapshot or externally supplied clock. Indices below start at zero. For suffix \(d\) and width \(u\), the following scanner returns a list of indexed queues:
+\begin{align*}
+ W(j,i,u,\varepsilon)&=[(j,i,\varepsilon)],\\
+ W(j,i,u,bd)&=(j,i,\operatorname{take}_{u}(bd))::
+ W\bigl(j+1,i+1\bmod |P_*|,(u\mathbin{\dot-}1)+b|v_i|,d\bigr).
+\end{align*}
+Here \(\dot-\) truncates at zero. The scanner reads at most \(|g|+1\) physical slices. Each bit delivered by a slice is present in \(g\). No transition produces a missing bit inside this decoder.
+
+\begin{lemma}\label{fifoexact}
+Suppose a run of a FIFO program \(P\) drains \(c=(i,z)\), consuming precisely \(g\). The corresponding scanner with inputs \(j,i,|z|,g\) returns exactly the sequence of actual configurations from \(c\) through the first empty queue, with consecutive indices starting at \(j\).
+\end{lemma}
+\begin{proof}
+Represent complete consumptions inductively by \((i,\varepsilon;\varepsilon)\) and by prefixing \(b\) to the consumption of \((i+1,z'v_i^b)\) to obtain a consumption of \((i,bz')\). Induction in this relation first gives \(g=z d\) for some \(d\): a FIFO removes all of its initial suffix before its new appendant. Hence the first slice is exactly \(z\). When \(z=bz'\), the next width is \(|z'|+b|v_i|\), the phase increments, and the remaining suffix is precisely the consumption for that next queue. Apply induction. The empty case returns the single empty queue. For a generated term the native pop records the next actual bit and the native release appends exactly the appropriate word. Induction using the proved equality of the bare orbit to the erased board orbit yields precisely this complete-consumption relation whenever the regular detector fires. A stationary empty tail adds no physical cells.
+\end{proof}
+
+\paragraph{\textit{Literal tape parser.}}
+For a slice \((j,i,z)\), form the partial row \(R_w(j,i,z)\) with the terminal-row reader \texttt{decodeTerminalTape?} of~\cite{filin}. Its data inputs are the static seed and the actual bits \(z\). At phase zero it reads aligned one-hot blocks of 114 bits. It uses the canonical decoder at index zero and the arrival decoder at a positive index. It parses the tagged boundary, deletion-two encoding and counter word, decodes the tape boundary, and tests the terminal rule in the seed-derived table. At other phases it fails. Each stage is a total option-valued reader. The positive index is used only to distinguish a later arrival from the initial word. Its magnitude is never used to run a machine for that many steps. The imported source-reflection theorem states, for each particular row \(r\),
+\[
+ \exists j:\ R_w(j,c_j)=r
+ \quad\Longleftrightarrow\quad
+ (\exists n:\operatorname{run}_{M}^{n}(r_0)=r)\ \land\ \operatorname{step}_M(r)=\bot ,
+\]
+where \(c_j\) is the actual \(j\)-th Cook configuration from \(w\). The kernel checks the full compiler, reflection and converse proof at the pinned revision. In addition, \(R_w(j,i,\varepsilon)=\bot\) for every \(i,j,w\): the empty one-hot sequence yields no canonical or arrival configuration. This last observation is essential because the indexed reflection theorem has no upper bound on \(j\).
+
+Define \(D_T=\bot\) off the regular guard. At a hit apply \(R_w\) to the physical windows \(W(0,0,|w|,g)\), map each returned row through \(\nu\), and take the first successful value, returning \(\bot\) if none succeeds. Invalid finite trees have a total interpretation by the same option-valued structural definitions. Neither the encoder nor the decoder calls the source transition function, a run enumerator or an oracle for the result. The reflection argument invokes source execution only in its specification and proof.
+
+\begin{theorem}\label{certnumeric}
+For all \(e,x,y\in\mathbb N\),
+\[
+ U_T(e,x)\downarrow=y\quad\Longleftrightarrow\quad
+ \exists k:\ H_T(\sigma_T^k E_T(e,x))=1,\quad D_T(\sigma_T^k E_T(e,x))=y .
+\]
+Every successful boundary transition uses two to four contextual \(S\) contractions. The same numerical equivalence holds when the eight-mode controller is sampled after every individual contraction. All accepted results for a given input agree.
+\end{theorem}
+\begin{proof}
+By the kernel-checked regular domain equivalence, the guard is reached exactly on a halting input. At any hit, Lemma~\ref{fifoexact} makes membership in the list of physical readings equivalent to the existence of a successful reading of some \(c_j\): after its first empty queue every further \(c_j\) is empty and the empty reader always fails. The source-reflection equivalence now identifies the set of results with the unary values of the terminal rows of \(M\). A deterministic run reaching two terminal rows must reach the same row: induction over the two run lengths strips simultaneous steps, and an additional step from a terminal row is impossible. The first successful value therefore exists exactly for the correct \(y\). For the primitive controller, each bounded action has a block of exactly its declared length, with no intermediate boundary. On a productive generated seed every nonterminal boundary starts such a block. Conversely, induction on the number of primitive actions places each accepting primitive configuration at the identical bare tree of a boundary iterate. From an already accepting boundary the fallback either stutters or enters an absorbing nonaccepting mode. This proves both directions including all intermediate actions.
+\end{proof}
+
+\paragraph{\textit{Numerical separation.}}
+The accepted boundary is stationary, so the decoder can be applied once, at the first guard hit. Consider any \(r\)-register replacement of Theorem~\ref{cutoff} with \(q\) possible summaries per register. Even granting an arbitrary total computable numerical reader of the \emph{entire concrete register vector} at its first accepting tick, its numerical input--output graph is decidable for every total computable encoder. Indeed if a first hit occurs at \(n\), the abstract cutoff supplies a hit \(j<q^r\). The concrete and abstract guards agree at every time, so firstness forces \(n\le j\). One can construct the concrete terms for fewer than \(q^r\) ticks and read the concrete value at the first hit. The Lean theorem \texttt{first\_numeric\_cutoff} proves this bounded equivalence for every reader. An enumeration with a verifier deciding \emph{which} time to accept does not have this restriction. Our output parser is invoked only after a regular native-dependent event whose eventual occurrence already characterizes the halting domain. The argument applies to the stated register replacements, including whole-tree copying and feedback. It asserts no limitation on arbitrary alternative active rewriting machines.

@@ -1,0 +1,25 @@
+{
+  "project": "Cinematic Strawberry",
+  "revision": "47edfaa400209dee85837e032dec0620915004e5",
+  "public_release_date": "2026-09-14",
+  "audited_path": "docs/paper/related/pure_s_universality",
+  "status": [
+    {
+      "command": "python3 verify_files.py",
+      "output": "PASS package checksums: 1451 files",
+      "exit": 0
+    },
+    {
+      "command": "lake build PureSFormal.RootResetHeadline",
+      "exit": 0,
+      "reported_jobs": 580,
+      "output": "filin_headline_build.log.gz"
+    },
+    {
+      "command": "lake env leanchecker --fresh PureSFormal.RootResetHeadline",
+      "exit": 0,
+      "stdout_and_stderr": ""
+    }
+  ],
+  "scope": "Independent execution of these three checks in this workspace. The full release and its 319 exported theorem audits are upstream reports."
+}

@@ -1,0 +1,27 @@
+{
+  "scope": "arbitrary natural input/output on ground pure-S terms, macro and eight-mode primitive; original tape halting and Boolean output preserved",
+  "source_commit": "b166eb062b29ccefa1331938a191133394c734ca",
+  "historical_commit": "94a6fb60666c4bf4f98cca06dcd93e5d41411159",
+  "clean_command": "bash scripts/proof_replay.sh",
+  "clean_exit": 0,
+  "clean_lake_jobs": 118,
+  "fresh_kernel_command": "lake env leanchecker --fresh -v CandidateCertificate",
+  "fresh_kernel_exit": 0,
+  "alternate_command": "python3 scripts/replay_alternate.py <pinned-lean4lean>",
+  "alternate_exit": 0,
+  "alternate_source_modules": 112,
+  "alternate_reported_declaration_replays": 13128,
+  "counts": {
+    "authored_library_modules": 22,
+    "authored_library_source_lines": 3284,
+    "explicit_theorems": 239,
+    "explicit_definitions_and_types": 219,
+    "indexed_authored_declarations": 458,
+    "environment_declarations_examined": 1401,
+    "vendored_source_modules": 90
+  },
+  "test_suites": 11,
+  "display_inspection": "both documents rendered and reviewed; see page bounds and PDF hashes in papers.json",
+  "source_tests": "NumericalExamples.lean verified finite source rows and the proof transporting accepted rows to numerical ground terms; tape-coded universal seeds were not directly materialized",
+  "scope_of_this_record": "pre-freeze independent clean source check; final archive checks are recorded in the separately delivered release receipt"
+}
