@@ -1,0 +1,7 @@
+Licensing scope
+
+This repository is publicly available for research review. The original manuscripts and project code carry no project-wide open-source license. Third-party materials retain the licenses identified below.
+
+The compiler and terminal-row reader from Cinematic Strawberry are distributed under the MIT license. The full copyright notice, permission notice and disclaimer appear in third_party/cinematic-strawberry-compiler/LICENSE.
+
+Font subsets embedded in the two PDFs retain their respective licenses. The notices and source information are in THIRD_PARTY_NOTICES.md, THIRD_PARTY_INVENTORY.json and licenses/.
